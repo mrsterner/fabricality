@@ -10,6 +10,9 @@ import org.valkyrienskies.mod.common.ValkyrienSkiesMod;
 @Mixin(ValkyrienSkiesMod.class)
 public class MixinValkyrienSkiesMod {
 
+    /**
+     * Just qol, so I don't need to scroll so many tabs
+     */
     @Inject(method = "createCreativeTab$lambda$2", at = @At("HEAD"), cancellable = true)
     private static void fabricality$removeVS2ItemGroup(CreativeModeTab.ItemDisplayParameters output, CreativeModeTab.Output par2, CallbackInfo ci){
         ci.cancel();

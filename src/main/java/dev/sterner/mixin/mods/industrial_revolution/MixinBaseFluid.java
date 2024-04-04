@@ -18,6 +18,9 @@ public class MixinBaseFluid {
     @Mutable
     @Shadow @Final private int color;
 
+    /**
+     * Indrev is using the wrong color code for its fluids, so we switch r and b
+     */
     @Inject(method = "<init>", at = @At("TAIL"))
     private void fabricality$invertColor(ResourceLocation identifier, Function0 block, Function0 bucketItem, int color, CallbackInfo ci){
         this.color = ColorHelper.toVanillaColor(color);

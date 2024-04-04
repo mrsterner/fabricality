@@ -15,6 +15,9 @@ public class MixinPrimaryLevelData {
     @Final
     private Lifecycle worldGenSettingsLifecycle;
 
+    /**
+     * Disables experimental settings warning screen
+     */
     @Inject(method = "worldGenSettingsLifecycle", at = @At("HEAD"), cancellable = true)
     private void fabricality$removeExperimentalWorldSettingScreen(CallbackInfoReturnable<Lifecycle> cir) {
         if (worldGenSettingsLifecycle == Lifecycle.experimental()) {
