@@ -1,0 +1,12 @@
+{
+	"required": true,
+	"package": "dev.sterner.mixin",
+	"compatibilityLevel": "JAVA_17",
+	"mixins": [
+		"mods.industrial_revolution.MixinBaseFluid",
+		"mods.valkyrien_skies.MixinValkyrienSkiesMod"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}
