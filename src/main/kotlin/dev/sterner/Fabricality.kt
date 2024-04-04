@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory
 
 
 object Fabricality : ModInitializer {
+	val debug = true
 	val MODID = "fabricality"
     private val LOGGER = LoggerFactory.getLogger(MODID)
 
@@ -17,12 +18,19 @@ object Fabricality : ModInitializer {
 	}
 
 	private fun registerResources() {
+		debug()
 		val gearwork = ResourceLocation(MODID, MODID)
 		FabricLoader.getInstance().getModContainer(MODID).ifPresent { container ->
 			ResourceManagerHelper.registerBuiltinResourcePack(gearwork,
 				container,
 				"Indrev: Retexture",
 				ResourcePackActivationType.NORMAL)
+		}
+	}
+
+	fun debug(){
+		if (debug) {
+			LOGGER.info("FABRICALITY DEBUG: ${Thread.currentThread().stackTrace[2].methodName}")
 		}
 	}
 
