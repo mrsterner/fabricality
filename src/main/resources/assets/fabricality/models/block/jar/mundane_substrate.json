@@ -1,0 +1,7 @@
+{
+  "parent": "fabricality:block/substrate",
+  "textures": {
+    "particle": "block/glass",
+    "0": "fabricality:block/mundane_glass"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "parent": "fabricality:block/machine/frame_template",
+  "textures": {
+    "particle": "fabricality:block/machine/enderium/enderium_machine_top",
+    "down": "fabricality:block/machine/enderium/enderium_machine_bottom",
+    "up": "fabricality:block/machine/enderium/enderium_machine_top",
+    "north": "fabricality:block/machine/enderium/enderium_machine_side",
+    "east": "fabricality:block/machine/enderium/enderium_machine_side",
+    "south": "fabricality:block/machine/enderium/enderium_machine_side",
+    "west": "fabricality:block/machine/enderium/enderium_machine_side",
+    "inner": "fabricality:block/machine/enderium/enderium_machine_inner"
+  }
+}

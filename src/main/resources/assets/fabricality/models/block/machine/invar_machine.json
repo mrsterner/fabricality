@@ -1,0 +1,13 @@
+{
+  "parent": "fabricality:block/machine/frame_template",
+  "textures": {
+    "particle": "fabricality:block/casing/invar/invar_casing_top",
+    "down": "fabricality:block/casing/invar/invar_casing_top",
+    "up": "fabricality:block/casing/invar/invar_casing_top",
+    "north": "fabricality:block/casing/invar/invar_casing_side",
+    "east": "fabricality:block/casing/invar/invar_casing_side",
+    "south": "fabricality:block/casing/invar/invar_casing_side",
+    "west": "fabricality:block/casing/invar/invar_casing_side",
+    "inner": "fabricality:block/casing/invar/invar_casing_side"
+  }
+}

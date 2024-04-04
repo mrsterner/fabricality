@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "fabricality:block/machine/extractor/extractor_machine_top",
+    "side": "fabricality:block/machine/extractor/extractor_machine_side"
+  }
+}

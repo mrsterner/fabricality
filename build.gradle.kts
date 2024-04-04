@@ -31,6 +31,22 @@ val teamreborn_energy_version: String by project
 val magna_version: String by project
 val indium_version: String by project
 val extra_mod_integrations_version: String by project
+val create_steam_n_rails_version: String by project
+val ad_astra_version: String by project
+val ae2_version: String by project
+val create_enchantment_industry_version: String by project
+val cc_tweaked_version: String by project
+val numismatic_overhaul_version: String by project
+val spelunkery_version: String by project
+val extended_cogwheels_version: String by project
+val moonlight_version: String by project
+val cardinal_components_api_version: String by project
+val owo_lib_version: String by project
+val create_dragon_lib_version: String by project
+val resourcefullib_version: String by project
+val resourcefulconfig_version: String by project
+val brrp_version: String by project
+val tab_binder_version: String by project
 
 version = project.property("mod_version") as String
 group = project.property("maven_group") as String
@@ -42,11 +58,18 @@ repositories {
 	maven(url = "https://mvn.devos.one/releases/")
 	maven(url = "https://maven.terraformersmc.com/")
 	maven(url = "https://jitpack.io/")
+	maven(url = "https://maven.ladysnake.org/releases")
 	maven(url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/")
 	maven(url = "https://maven.tterrag.com/")
 	maven(url = "https://maven.teamresourceful.com/repository/maven-public/")
 	maven(url = "https://server.bbkr.space/artifactory/libs-release")
 	maven(url = "https://maven.draylar.dev/releases")
+	maven(url = "https://maven.dragons.plus/releases")
+	maven(url = "https://maven.dragons.plus/snapshots")
+	maven(url = "https://maven.ithundxr.dev/snapshots")
+	maven(url = "https://modmaven.dev/")
+	maven(url = "https://squiddev.cc/maven/")
+	maven(url =" https://raw.githubusercontent.com/SolidBlock-cn/mvn-repo/main")
 	maven(url = "https://maven.valkyrienskies.org")
 }
 
@@ -71,6 +94,31 @@ dependencies {
 	port_lib_modules.split(",").forEach { module ->
 		modApi("io.github.fabricators_of_create.Porting-Lib:$module:${project.properties["port_lib_version"]}")
 	}
+
+	//modImplementation("com.railwayteam.railways:Steam_Rails-fabric-1.20.1:${create_steam_n_rails_version}"){isTransitive = false}
+	//modImplementation("maven.modrinth:ad-astra:${ad_astra_version}")
+	modImplementation("earth.terrarium.adastra:ad_astra-fabric-${minecraft_version}:${ad_astra_version}")
+	modImplementation("com.teamresourceful.resourcefullib:resourcefullib-fabric-${minecraft_version}:${resourcefullib_version}")
+	modImplementation("com.teamresourceful.resourcefulconfig:resourcefulconfig-fabric-${minecraft_version}:${resourcefulconfig_version}")
+	//modImplementation("maven.modrinth:ae2:${ae2_version}")
+	modImplementation("appeng:appliedenergistics2-fabric:${ae2_version}")
+	modImplementation("maven.modrinth:create-enchantment-industry-fabric:${create_enchantment_industry_version}")
+	modCompileOnly("cc.tweaked:cc-tweaked-${minecraft_version}-fabric-api:${cc_tweaked_version}")
+	modRuntimeOnly("cc.tweaked:cc-tweaked-${minecraft_version}-fabric:${cc_tweaked_version}")
+	modImplementation("maven.modrinth:numismatic-overhaul:${numismatic_overhaul_version}")
+	modImplementation("maven.modrinth:spelunkery:${spelunkery_version}")
+	modImplementation("maven.modrinth:moonlight:${moonlight_version}")
+	modImplementation("maven.modrinth:extended-cogwheels:${extended_cogwheels_version}")
+	modImplementation("maven.modrinth:owo-lib:${owo_lib_version}")
+	modImplementation("plus.dragons.createdragonlib:create_dragon_lib-fabric-${minecraft_version}:${create_dragon_lib_version}")
+
+	modImplementation("maven.modrinth:brrp:${brrp_version}")
+	//modImplementation("com.github.DM-Earth:Tags-Binder:${tab_binder_version}")
+
+	modApi("dev.onyxstudios.cardinal-components-api:cardinal-components-base:${cardinal_components_api_version}")
+	modImplementation("dev.onyxstudios.cardinal-components-api:cardinal-components-entity:${cardinal_components_api_version}")
+	modImplementation("dev.onyxstudios.cardinal-components-api:cardinal-components-world:${cardinal_components_api_version}")
+
 
 	modApi("org.valkyrienskies:valkyrienskies-120-fabric:${vs2_version}")
 

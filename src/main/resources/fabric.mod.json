@@ -3,16 +3,16 @@
 	"id": "fabricality",
 	"version": "${version}",
 	"name": "Fabricality",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "Utility mod for a cool progression based modpack",
 	"authors": [
-		"Me!"
+		"MrSterner"
 	],
 	"contact": {
 		"homepage": "https://fabricmc.net/",
 		"sources": "https://github.com/FabricMC/fabric-example-mod"
 	},
 	"license": "CC0-1.0",
-	"icon": "assets/faabricality/icon.png",
+	"icon": "assets/fabricality/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
@@ -24,12 +24,6 @@
 		"client": [
 			{
 				"value": "dev.sterner.FabricalityClient",
-				"adapter": "kotlin"
-			}
-		],
-		"fabric-datagen": [
-			{
-				"value": "dev.sterner.FabricalityDataGenerator",
 				"adapter": "kotlin"
 			}
 		]

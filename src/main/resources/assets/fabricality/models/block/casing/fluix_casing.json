@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "fabricality:block/casing/fluix/fluix_casing"
+  }
+}
