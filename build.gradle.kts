@@ -47,6 +47,7 @@ val resourcefullib_version: String by project
 val resourcefulconfig_version: String by project
 val brrp_version: String by project
 val tab_binder_version: String by project
+val recipe_in_programming_version: String by project
 
 version = project.property("mod_version") as String
 group = project.property("maven_group") as String
@@ -137,6 +138,8 @@ dependencies {
 
 	modLocalRuntime("maven.modrinth:sodium:${sodium_version}")
 	modLocalRuntime("maven.modrinth:indium:${indium_version}")
+
+	modImplementation("com.github.HO-Artisan:RecipeInProgramming:${recipe_in_programming_version}")
 }
 
 java {

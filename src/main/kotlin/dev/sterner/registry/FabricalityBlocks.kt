@@ -8,11 +8,17 @@ import net.fabricmc.fabric.api.item.v1.FabricItemSettings
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents.ModifyEntries
+import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
 import net.minecraft.core.Registry
 import net.minecraft.core.registries.BuiltInRegistries
+import net.minecraft.core.registries.Registries
+import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.item.BlockItem
 import net.minecraft.world.item.Item
 import net.minecraft.world.level.block.Block
+import net.minecraft.world.level.block.Blocks
+import net.minecraft.world.level.block.LiquidBlock
+import net.minecraft.world.level.material.FlowingFluid
 import java.util.*
 
 
@@ -48,5 +54,12 @@ object FabricalityBlocks {
         }
 
         return registered
+    }
+
+    fun registerFluidBlock(id: ResourceLocation?, fluid: FlowingFluid?): LiquidBlock {
+        return Registry.register(
+            BuiltInRegistries.BLOCK, id,
+            LiquidBlock(fluid, FabricBlockSettings.copy(Blocks.WATER))
+        )
     }
 }

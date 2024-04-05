@@ -26,6 +26,9 @@
 				"value": "dev.sterner.FabricalityClient",
 				"adapter": "kotlin"
 			}
+		],
+		"emi": [
+			"dev.sterner.client.plugin.emi.FabEMIClientPlugin"
 		]
 	},
 	"mixins": [

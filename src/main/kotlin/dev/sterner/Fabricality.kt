@@ -1,7 +1,10 @@
 package dev.sterner
 
 import dev.sterner.registry.FabricalityBlocks
+import dev.sterner.registry.FabricalityFluids
 import dev.sterner.registry.FabricalityItems
+import dev.sterner.tweak.RecipeTweaks
+import dev.sterner.tweak.thread.TechThread
 import net.fabricmc.api.ModInitializer
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper
@@ -38,7 +41,9 @@ object Fabricality : ModInitializer {
 
 		FabricalityItems.register()
 		FabricalityBlocks.register()
+		FabricalityFluids.register()
 
+		registerEvents()
 		registerResources()
 
 		Registry.register(
@@ -47,7 +52,13 @@ object Fabricality : ModInitializer {
 				.title(Component.literal("Fabricality"))
 				.build())
 
+		for (thread in TechThread.THREADS) thread.load()
+
 		RRPCallback.AFTER_VANILLA.register(RRPCallback { list: MutableList<PackResources?> -> list.add(RRPs.SERVER_RESOURCES) })
+	}
+
+	private fun registerEvents() {
+		RecipeTweaks()
 	}
 
 	object RRPs {
