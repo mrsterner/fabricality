@@ -33,6 +33,9 @@ object Fabricality : ModInitializer {
     //TODO Fluix crystal recipe, since seeds no longer exists
     //TODO Remove AE2 recipes, they seem to not be removed by RecipeInCode
     //TODO Intergrate diesel gen
+    //TODO Whole quest tree, use the Heracles converter
+    //TODO make soul fluid used by the infernal mechanism, like above and beyond
+    //TODO inscriber recipe reword using sequenced assembly?
 
     val debug = true
     val MODID = "fabricality"
