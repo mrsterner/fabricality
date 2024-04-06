@@ -3,7 +3,10 @@
   "package": "dev.sterner.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "AbstractFurnaceBlockEntityMixin",
     "BuiltInRegistryMixin",
+    "LavaFluidMixin",
+    "LiquidBlockMixin",
     "MixinPrimaryLevelData",
     "RegistryLoaderMixin",
     "mods.applied_energistics.MixinAppEngBase",

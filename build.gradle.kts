@@ -48,6 +48,7 @@ val resourcefulconfig_version: String by project
 val brrp_version: String by project
 val tab_binder_version: String by project
 val recipe_in_programming_version: String by project
+val diesel_gen_version: String by project
 
 version = project.property("mod_version") as String
 group = project.property("maven_group") as String
@@ -104,6 +105,7 @@ dependencies {
 	//modImplementation("maven.modrinth:ae2:${ae2_version}")
 	modImplementation("appeng:appliedenergistics2-fabric:${ae2_version}")
 	modImplementation("maven.modrinth:create-enchantment-industry-fabric:${create_enchantment_industry_version}")
+	modImplementation("maven.modrinth:create-diesel-generators-fabric:${diesel_gen_version}")
 	modCompileOnly("cc.tweaked:cc-tweaked-${minecraft_version}-fabric-api:${cc_tweaked_version}")
 	modRuntimeOnly("cc.tweaked:cc-tweaked-${minecraft_version}-fabric:${cc_tweaked_version}")
 	modImplementation("maven.modrinth:numismatic-overhaul:${numismatic_overhaul_version}")

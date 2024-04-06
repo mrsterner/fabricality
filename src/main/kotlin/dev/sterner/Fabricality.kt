@@ -43,6 +43,7 @@ object Fabricality : ModInitializer {
 	/*
 	Fluix crystal recipe, since seeds no longer exists
 	Recipe for liquid redstone
+	remove AE2 recipes, they seem stuck
 	 */
 
 	val debug = true

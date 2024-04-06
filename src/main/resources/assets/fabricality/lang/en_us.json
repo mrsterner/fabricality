@@ -1,6 +1,10 @@
 {
   "comment_item": "Items",
 
+  "item.fabricality.algal_blend"    : "Algal Blend",
+  "item.fabricality.algal_brick"    : "Algal Brick",
+  "item.fabricality.soul_bucket"    : "Soul Bucket",
+
   "item.fabricality.kinetic_mechanism"    : "Kinetic Mechanism",
   "item.fabricality.sealed_mechanism"     : "Sealed Mechanism",
   "item.fabricality.infernal_mechanism"   : "Infernal Mechanism",
@@ -117,7 +121,7 @@
   "item.fabricality.powered_water_bucket": "Powered Water Bucket",
   "item.fabricality.coke_bucket"         : "Coke Bucket",
   "item.fabricality.fine_sand_bucket"    : "Fine Sand Bucket",
-  "item.fabricality.raw_logic_bucket"    : "Liquefied Logic Bucket (Unprocessed)",
+  "item.fabricality.raw_logic_bucket"    : "Liquefied Logic Bucket",
   "item.fabricality.matrix_bucket"       : "Liquefied Computation Matrix Bucket",
 
   "item.fabricality.molten_desh_bucket"    : "Molten Desh Bucket",

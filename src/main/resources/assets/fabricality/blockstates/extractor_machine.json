@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "cabricality:block/machine/extractor_machine"
+      "model": "fabricality:block/machine/extractor_machine"
     }
   }
 }
