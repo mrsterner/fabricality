@@ -1,6 +1,5 @@
 package dev.sterner.registry
 
-import com.simibubi.create.AllFluids
 import com.simibubi.create.AllTags
 import com.tterrag.registrate.fabric.SimpleFlowableFluid
 import com.tterrag.registrate.util.entry.FluidEntry
@@ -465,45 +464,46 @@ object FabricalityFluids {
         }
         .register()
 
-    val MOLTEN_CALORITE: FluidEntry<SimpleFlowableFluid.Flowing> = Fabricality.REGISTRATE.standardFluid("molten_calorite")
-        .lang("Molten Calorite")
-        .tag(AllTags.forgeFluidTag("molten_calorite"), FluidTags.WATER) // fabric: water tag controls physics
-        .fluidProperties { p: SimpleFlowableFluid.Properties ->
-            p.levelDecreasePerBlock(2)
-                .tickRate(25)
-                .flowSpeed(3)
-                .blastResistance(100f)
-        }
-        .fluidAttributes {
-            CreateAttributeHandler("block.fabricality.molten_calorite",
-                1500,
-                1400)
-        }
-        .onRegisterAfter(Registries.ITEM
-        ) { redstone: SimpleFlowableFluid.Flowing ->
-            val source = redstone.source
-            // transfer values
-            FluidStorage.combinedItemApiProvider(source.bucket).register(
-                CombinedItemApiProvider { context: ContainerItemContext? ->
-                    FullItemFluidStorage(context,
-                        { bucket: ItemVariant? ->
-                            ItemVariant.of(Items.BUCKET)
-                        },
-                        FluidVariant.of(source),
-                        FluidConstants.BUCKET)
-                })
-            FluidStorage.combinedItemApiProvider(Items.BUCKET)
-                .register(
+    val MOLTEN_CALORITE: FluidEntry<SimpleFlowableFluid.Flowing> =
+        Fabricality.REGISTRATE.standardFluid("molten_calorite")
+            .lang("Molten Calorite")
+            .tag(AllTags.forgeFluidTag("molten_calorite"), FluidTags.WATER) // fabric: water tag controls physics
+            .fluidProperties { p: SimpleFlowableFluid.Properties ->
+                p.levelDecreasePerBlock(2)
+                    .tickRate(25)
+                    .flowSpeed(3)
+                    .blastResistance(100f)
+            }
+            .fluidAttributes {
+                CreateAttributeHandler("block.fabricality.molten_calorite",
+                    1500,
+                    1400)
+            }
+            .onRegisterAfter(Registries.ITEM
+            ) { redstone: SimpleFlowableFluid.Flowing ->
+                val source = redstone.source
+                // transfer values
+                FluidStorage.combinedItemApiProvider(source.bucket).register(
                     CombinedItemApiProvider { context: ContainerItemContext? ->
-                        EmptyItemFluidStorage(context,
+                        FullItemFluidStorage(context,
                             { bucket: ItemVariant? ->
-                                ItemVariant.of(source.bucket)
+                                ItemVariant.of(Items.BUCKET)
                             },
-                            source,
+                            FluidVariant.of(source),
                             FluidConstants.BUCKET)
                     })
-        }
-        .register()
+                FluidStorage.combinedItemApiProvider(Items.BUCKET)
+                    .register(
+                        CombinedItemApiProvider { context: ContainerItemContext? ->
+                            EmptyItemFluidStorage(context,
+                                { bucket: ItemVariant? ->
+                                    ItemVariant.of(source.bucket)
+                                },
+                                source,
+                                FluidConstants.BUCKET)
+                        })
+            }
+            .register()
 
     fun register() {}
 }

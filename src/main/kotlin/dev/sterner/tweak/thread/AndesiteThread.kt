@@ -9,12 +9,12 @@ import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder
 import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder.ProcessingRecipeParams
 import com.simibubi.create.content.processing.sequenced.SequencedAssemblyRecipeBuilder
 import com.simibubi.create.foundation.fluid.FluidIngredient
+import dev.sterner.ModCompatHelper.Entry.*
 import dev.sterner.data.FreePRP
 import dev.sterner.item.FabItemTags
 import dev.sterner.registry.FabricalityItems
 import dev.sterner.util.MechAndSmithCraft
 import dev.sterner.util.MechAndSmithCraft.entry
-import dev.sterner.ModCompatHelper.Entry.*
 import dev.sterner.util.RecipeUtil
 import ho.artisan.lib.recipe.api.RecipeLoadingEvents.AddRecipesCallback
 import ho.artisan.lib.recipe.api.RecipeLoadingEvents.RemoveRecipesCallback
@@ -34,10 +34,12 @@ import javax.annotation.Nullable
 
 object AndesiteThread : TechThread {
     override fun getLevel(): String {
-       return "andesite"
+        return "andesite"
     }
 
-    private fun entry(output: ResourceLocation, count: Int, @Nullable other: ResourceLocation?): MechAndSmithCraft.Entry {
+    private fun entry(output: ResourceLocation,
+                      count: Int,
+                      @Nullable other: ResourceLocation?): MechAndSmithCraft.Entry {
         return entry(getLevel(), FAB.id("andesite_machine"), output, count, other)
     }
 
@@ -201,6 +203,7 @@ object AndesiteThread : TechThread {
                 .build(id, "")
         }
     }
+
     override fun removeRecipes(handler: RemoveRecipesCallback.RecipeHandler) {
         handler.remove(CREATE.id("crafting", "materials", "andesite_alloy"))
         handler.remove(CREATE.id("crafting", "materials", "andesite_alloy_from_zinc"))

@@ -1,34 +1,67 @@
 {
   "type": "create:sequenced_assembly",
-  "ingredient": { "item": "fabricality:kinetic_mechanism" },
-  "transitionalItem": { "item": "create:incomplete_precision_mechanism" },
+  "ingredient": {
+    "item": "fabricality:kinetic_mechanism"
+  },
+  "transitionalItem": {
+    "item": "create:incomplete_precision_mechanism"
+  },
   "sequence": [
     {
       "type": "create:deploying",
       "ingredients": [
-        { "item": "create:incomplete_precision_mechanism" },
-        { "item": "create:electron_tube" }
+        {
+          "item": "create:incomplete_precision_mechanism"
+        },
+        {
+          "item": "create:electron_tube"
+        }
       ],
-      "results": [{ "item": "create:incomplete_precision_mechanism" }]
+      "results": [
+        {
+          "item": "create:incomplete_precision_mechanism"
+        }
+      ]
     },
     {
       "type": "create:deploying",
       "ingredients": [
-        { "item": "create:incomplete_precision_mechanism" },
-        { "item": "create:electron_tube" }
+        {
+          "item": "create:incomplete_precision_mechanism"
+        },
+        {
+          "item": "create:electron_tube"
+        }
       ],
-      "results": [{ "item": "create:incomplete_precision_mechanism" }]
+      "results": [
+        {
+          "item": "create:incomplete_precision_mechanism"
+        }
+      ]
     },
     {
       "type": "create:deploying",
       "ingredients": [
-        { "item": "create:incomplete_precision_mechanism" },
-        { "item": "indrev:screwdriver" }
+        {
+          "item": "create:incomplete_precision_mechanism"
+        },
+        {
+          "item": "indrev:screwdriver"
+        }
       ],
-      "results": [{ "item": "create:incomplete_precision_mechanism" }],
+      "results": [
+        {
+          "item": "create:incomplete_precision_mechanism"
+        }
+      ],
       "keepHeldItem": true
     }
   ],
-  "results": [{ "item": "create:precision_mechanism", "chance": 1 }],
+  "results": [
+    {
+      "item": "create:precision_mechanism",
+      "chance": 1
+    }
+  ],
   "loops": 1
 }

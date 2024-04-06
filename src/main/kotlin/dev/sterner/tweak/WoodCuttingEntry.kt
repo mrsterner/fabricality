@@ -1,8 +1,8 @@
 package dev.sterner.tweak
 
-import dev.sterner.ModCompatHelper.Entry.*
+import dev.sterner.ModCompatHelper.Entry.AD_ASTRA
+import dev.sterner.ModCompatHelper.Entry.MC
 import net.minecraft.core.registries.BuiltInRegistries
-import net.minecraft.core.registries.Registries
 import net.minecraft.resources.ResourceLocation
 import javax.annotation.Nullable
 
@@ -67,65 +67,65 @@ enum class WoodCuttingEntry(id: ResourceLocation,
         null, null,
         null, null
     ),
-/*
-    CHERRY_OAK(
-        PROMENADE.id("cherry_oak"),
-        "cherry_oak_planks", "cherry_oak_slab",
-        "cherry_oak_log", "stripped_cherry_oak_log",
-        "cherry_oak_wood", "stripped_cherry_oak_wood"
-    ),
 
-    PALM(
-        PROMENADE.id("palm"),
-        "palm_planks", "palm_slab",
-        "palm_log", "stripped_palm_log",
-        "palm_wood", "stripped_palm_wood"
-    ),  /*
+    /*
+        CHERRY_OAK(
+            PROMENADE.id("cherry_oak"),
+            "cherry_oak_planks", "cherry_oak_slab",
+            "cherry_oak_log", "stripped_cherry_oak_log",
+            "cherry_oak_wood", "stripped_cherry_oak_wood"
+        ),
 
- */
-	RUNEWOOD(
-			MLM.id("runewood"),
-			"runewood_planks", "runewood_planks_slab",
-			"runewood_log", "stripped_runewood_log",
-			"runewood", "stripped_runewood"
-	),
+        PALM(
+            PROMENADE.id("palm"),
+            "palm_planks", "palm_slab",
+            "palm_log", "stripped_palm_log",
+            "palm_wood", "stripped_palm_wood"
+        ),  /*
 
-	SOULWOOD(
-			MLM.id("soulwood"),
-			"soulwood_planks", "soulwood_planks_slab",
-			"soulwood_log", "stripped_soulwood_log",
-			"soulwood", "stripped_soulwood"
-	),
+     */
+        RUNEWOOD(
+                MLM.id("runewood"),
+                "runewood_planks", "runewood_planks_slab",
+                "runewood_log", "stripped_runewood_log",
+                "runewood", "stripped_runewood"
+        ),
+
+        SOULWOOD(
+                MLM.id("soulwood"),
+                "soulwood_planks", "soulwood_planks_slab",
+                "soulwood_log", "stripped_soulwood_log",
+                "soulwood", "stripped_soulwood"
+        ),
 
 
-    BLOODSHROOM(
-        TC.id("bloodshroom"),
-        "bloodshroom_planks", "bloodshroom_planks_slab",
-        null, null,
-        null, null
-    ),
+        BLOODSHROOM(
+            TC.id("bloodshroom"),
+            "bloodshroom_planks", "bloodshroom_planks_slab",
+            null, null,
+            null, null
+        ),
 
-    SKYROOT(
-        TC.id("skyroot"),
-        "skyroot_planks", "skyroot_planks_slab",
-        null, null,
-        null, null
-    ),
+        SKYROOT(
+            TC.id("skyroot"),
+            "skyroot_planks", "skyroot_planks_slab",
+            null, null,
+            null, null
+        ),
 
-    GREENHEART(
-        TC.id("greenheart"),
-        "greenheart_planks", "greenheart_planks_slab",
-        null, null,
-        null, null
-    ),
-*/
+        GREENHEART(
+            TC.id("greenheart"),
+            "greenheart_planks", "greenheart_planks_slab",
+            null, null,
+            null, null
+        ),
+    */
     GLACIAN(
         AD_ASTRA.id("glacian"),
         "glacian_planks", "glacian_slab",
         "glacian_log", "stripped_glacian_log",
         null, null
     );
-
 
 
     /*
@@ -218,25 +218,25 @@ enum class WoodCuttingEntry(id: ResourceLocation,
     private val id: ResourceLocation = id
 
     @Nullable
-    private val plankId: ResourceLocation? = if ((plank == null)) null else ResourceLocation(id.getNamespace(), plank)
+    private val plankId: ResourceLocation? = if ((plank == null)) null else ResourceLocation(id.namespace, plank)
 
     @Nullable
     private val plankSlabId: ResourceLocation? =
-        if ((plankSlab == null)) null else ResourceLocation(id.getNamespace(), plankSlab)
+        if ((plankSlab == null)) null else ResourceLocation(id.namespace, plankSlab)
 
     @Nullable
-    private val logId: ResourceLocation? = if ((log == null)) null else ResourceLocation(id.getNamespace(), log)
+    private val logId: ResourceLocation? = if ((log == null)) null else ResourceLocation(id.namespace, log)
 
     @Nullable
     private val strippedLogId: ResourceLocation? =
-        if ((strippedLog == null)) null else ResourceLocation(id.getNamespace(), strippedLog)
+        if ((strippedLog == null)) null else ResourceLocation(id.namespace, strippedLog)
 
     @Nullable
-    private val woodId: ResourceLocation? = if ((wood == null)) null else ResourceLocation(id.getNamespace(), wood)
+    private val woodId: ResourceLocation? = if ((wood == null)) null else ResourceLocation(id.namespace, wood)
 
     @Nullable
     private val strippedWoodId: ResourceLocation? =
-        if ((strippedWood == null)) null else ResourceLocation(id.getNamespace(), strippedWood)
+        if ((strippedWood == null)) null else ResourceLocation(id.namespace, strippedWood)
 
     fun getId(): ResourceLocation {
         return id

@@ -1,13 +1,11 @@
 package dev.sterner.tweak
 
 import dev.sterner.ModCompatHelper.Entry.*
-import me.steven.indrev.utils.rawId
 import net.minecraft.core.registries.BuiltInRegistries
-import net.minecraft.core.registries.Registries
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.item.Item
 import net.minecraft.world.level.material.Fluid
-import java.util.Arrays
+import java.util.*
 
 
 enum class OreProcessingEntry(id: ResourceLocation,
@@ -191,8 +189,8 @@ enum class OreProcessingEntry(id: ResourceLocation,
         }
 
     fun isTargetOre(item: Item?): Boolean {
-        val id: String = BuiltInRegistries.ITEM.getKey(item).getPath()
-        return id.contains(getId().getPath()) && id.contains("ore")
+        val id: String = BuiltInRegistries.ITEM.getKey(item).path
+        return id.contains(getId().path) && id.contains("ore")
     }
 
     fun check() {

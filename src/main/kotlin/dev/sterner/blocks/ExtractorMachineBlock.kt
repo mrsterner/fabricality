@@ -17,18 +17,16 @@ import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.BaseEntityBlock
-import net.minecraft.world.level.block.EntityBlock
 import net.minecraft.world.level.block.RenderShape
 import net.minecraft.world.level.block.entity.BlockEntity
 import net.minecraft.world.level.block.entity.BlockEntityTicker
 import net.minecraft.world.level.block.entity.BlockEntityType
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.phys.BlockHitResult
-import javax.annotation.Nullable
 
 
 class ExtractorMachineBlock(properties: Properties) : BaseEntityBlock(properties), ResourcedBlock {
-    override fun newBlockEntity(pos: BlockPos, state: BlockState): BlockEntity? {
+    override fun newBlockEntity(pos: BlockPos, state: BlockState): BlockEntity {
         return ExtractorMachineBlockEntity(pos, state)
     }
 
@@ -55,13 +53,14 @@ class ExtractorMachineBlock(properties: Properties) : BaseEntityBlock(properties
                      player: Player,
                      hand: InteractionHand,
                      hit: BlockHitResult): InteractionResult {
-        if (!(hit.direction === Direction.UP || hit.direction === Direction.DOWN || BuiltInRegistries.ITEM.getKey(player.getItemInHand(hand).getItem()).equals(ResourceLocation("minecraft", "bucket")))
+        if (!(hit.direction === Direction.UP || hit.direction === Direction.DOWN || BuiltInRegistries.ITEM.getKey(player.getItemInHand(
+                hand).item).equals(ResourceLocation("minecraft", "bucket")))
         ) return InteractionResult.PASS
         val extractor: ExtractorMachineBlockEntity =
             checkNotNull(level.getBlockEntity(pos) as ExtractorMachineBlockEntity)
         val stack: ItemStack = player.getItemInHand(hand)
         if (extractor.storage.getAmount() >= FluidConstants.BUCKET
-            && extractor.storage.getResource().isOf(FabricalityFluids.RESIN.get())
+            && extractor.storage.resource.isOf(FabricalityFluids.RESIN.get())
         ) {
             TransferUtil.extract<FluidVariant>(extractor.storage,
                 FluidVariant.of(FabricalityFluids.RESIN.get()),

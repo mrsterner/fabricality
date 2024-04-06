@@ -3,7 +3,10 @@ package dev.sterner.tweak.thread
 import com.simibubi.create.content.kinetics.mixer.CompactingRecipe
 import com.simibubi.create.content.processing.recipe.ProcessingOutput
 import com.simibubi.create.foundation.fluid.FluidIngredient
+import dev.sterner.ModCompatHelper.Entry.*
 import dev.sterner.data.FreePRP
+import dev.sterner.registry.FabricalityFluids
+import dev.sterner.registry.FabricalityItems
 import dev.sterner.util.MechAndSmithCraft
 import dev.sterner.util.MechAndSmithCraft.addEntry
 import dev.sterner.util.MechAndSmithCraft.entry
@@ -11,19 +14,16 @@ import dev.sterner.util.RecipeUtil.donutRecipe
 import ho.artisan.lib.recipe.api.RecipeLoadingEvents.AddRecipesCallback
 import ho.artisan.lib.recipe.api.RecipeLoadingEvents.RemoveRecipesCallback
 import ho.artisan.lib.recipe.api.builder.VanillaRecipeBuilders
+import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.tags.ItemTags
 import net.minecraft.world.item.ItemStack
-import net.minecraft.world.item.crafting.Ingredient
-import org.jetbrains.annotations.Contract
-import javax.annotation.Nullable
-import dev.sterner.ModCompatHelper.Entry.*
-import dev.sterner.registry.FabricalityFluids
-import dev.sterner.registry.FabricalityItems
-import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants
 import net.minecraft.world.item.Items
 import net.minecraft.world.item.crafting.CookingBookCategory
+import net.minecraft.world.item.crafting.Ingredient
 import net.minecraft.world.level.material.Fluids
+import org.jetbrains.annotations.Contract
+import javax.annotation.Nullable
 
 
 object CopperThread : TechThread {
@@ -133,7 +133,9 @@ object CopperThread : TechThread {
     }
 
     @Contract("_, _, _ -> new")
-    private fun entry(output: ResourceLocation, count: Int, @Nullable other: ResourceLocation?): MechAndSmithCraft.Entry {
+    private fun entry(output: ResourceLocation,
+                      count: Int,
+                      @Nullable other: ResourceLocation?): MechAndSmithCraft.Entry {
         return entry(this.getLevel(), FAB.id("copper_machine"), output, count, other)
     }
 }

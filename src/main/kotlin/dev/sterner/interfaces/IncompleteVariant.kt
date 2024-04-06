@@ -12,7 +12,7 @@ interface IncompleteVariant {
     }
 
     fun getIncompleteId(id: ResourceLocation): ResourceLocation? {
-        return ResourceLocation(id.getNamespace(), "incomplete_" + id.getPath())
+        return ResourceLocation(id.namespace, "incomplete_" + id.path)
     }
 
     fun incompleteSettings(rarity: Rarity?): Item.Properties? {

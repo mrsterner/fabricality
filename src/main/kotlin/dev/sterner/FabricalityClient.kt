@@ -13,17 +13,17 @@ import java.util.*
 
 object FabricalityClient : ClientModInitializer {
 
-	override fun onInitializeClient() {
+    override fun onInitializeClient() {
 
-		//ColorRegistryListener.load()
-		//WoodCuttingEntry.checkAll()
-		OreProcessingEntry.checkAll()
+        //ColorRegistryListener.load()
+        //WoodCuttingEntry.checkAll()
+        OreProcessingEntry.checkAll()
 
-		Arrays.stream(MachineBlockEntry.entries.toTypedArray())
-			.forEach { entry -> BlockRenderLayerMap.INSTANCE.putBlock(entry.getBlock(), entry.getRenderType()) }
-		Arrays.stream(CasingBlockEntry.entries.toTypedArray())
-			.forEach { entry -> BlockRenderLayerMap.INSTANCE.putBlock(entry.getBlock(), entry.getRenderType()) }
+        Arrays.stream(MachineBlockEntry.entries.toTypedArray())
+            .forEach { entry -> BlockRenderLayerMap.INSTANCE.putBlock(entry.getBlock(), entry.getRenderType()) }
+        Arrays.stream(CasingBlockEntry.entries.toTypedArray())
+            .forEach { entry -> BlockRenderLayerMap.INSTANCE.putBlock(entry.getBlock(), entry.getRenderType()) }
 
-		RRPCallback.AFTER_VANILLA.register(RRPCallback { list: MutableList<PackResources?> -> list.add(RRPs.CLIENT_RESOURCES) })
-	}
+        RRPCallback.AFTER_VANILLA.register(RRPCallback { list: MutableList<PackResources?> -> list.add(RRPs.CLIENT_RESOURCES) })
+    }
 }

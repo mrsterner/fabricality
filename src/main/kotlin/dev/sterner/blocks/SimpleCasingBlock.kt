@@ -24,10 +24,6 @@ class SimpleCasingBlock(properties: Properties?, var name: String) : CasingBlock
         return Fabricality.id("block", "casing", this.name + "_casing")
     }
 
-    override fun doItemModel(): Boolean {
-        return super.doItemModel()
-    }
-
     override fun doLootTable(): Boolean {
         return true
     }

@@ -5,7 +5,10 @@ import com.simibubi.create.content.kinetics.millstone.MillingRecipe
 import com.simibubi.create.content.kinetics.mixer.MixingRecipe
 import com.simibubi.create.content.processing.recipe.ProcessingOutput
 import com.simibubi.create.foundation.fluid.FluidIngredient
+import dev.sterner.ModCompatHelper.Entry.*
 import dev.sterner.data.FreePRP
+import dev.sterner.registry.FabricalityFluids
+import dev.sterner.util.ListUtil
 import dev.sterner.util.MechAndSmithCraft
 import dev.sterner.util.MechAndSmithCraft.addEntry
 import dev.sterner.util.MechAndSmithCraft.entry
@@ -13,19 +16,14 @@ import dev.sterner.util.RecipeUtil.donutRecipe
 import ho.artisan.lib.recipe.api.RecipeLoadingEvents.AddRecipesCallback
 import ho.artisan.lib.recipe.api.RecipeLoadingEvents.RemoveRecipesCallback
 import ho.artisan.lib.recipe.api.builder.VanillaRecipeBuilders
-import net.minecraft.core.registries.Registries
-import net.minecraft.resources.ResourceLocation
-import net.minecraft.world.item.crafting.Ingredient
-import dev.sterner.ModCompatHelper.Entry.*
-import dev.sterner.registry.FabricalityFluids
-import dev.sterner.util.ListUtil
 import io.github.fabricators_of_create.porting_lib.fluids.FluidStack
 import me.steven.indrev.IndustrialRevolution
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants
-import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant
 import net.minecraft.core.registries.BuiltInRegistries
+import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.Items
+import net.minecraft.world.item.crafting.Ingredient
 import net.minecraft.world.level.material.Fluids
 import org.jetbrains.annotations.Contract
 import org.jetbrains.annotations.Nullable
@@ -76,13 +74,13 @@ object BrassThread : TechThread {
         )
 
 
-		handler.register(
-				recipeId("mixing", "sky_stone")
+        handler.register(
+            recipeId("mixing", "sky_stone")
         ) { id: ResourceLocation ->
             MixingRecipe(FreePRP(id)
-            .setFluidIngredient(FluidIngredient.fromFluid(Fluids.WATER, FluidConstants.BOTTLE))
-            .setIngredient(ListUtil.loop(Ingredient.of(AE2.asItem("sky_dust")), 3))
-            .setFluidResult(FluidStack(FabricalityFluids.SKY_STONE.get(), FluidConstants.BOTTLE)))
+                .setFluidIngredient(FluidIngredient.fromFluid(Fluids.WATER, FluidConstants.BOTTLE))
+                .setIngredient(ListUtil.loop(Ingredient.of(AE2.asItem("sky_dust")), 3))
+                .setFluidResult(FluidStack(FabricalityFluids.SKY_STONE.get(), FluidConstants.BOTTLE)))
         }
 
         /* Converted to json
@@ -113,7 +111,8 @@ object BrassThread : TechThread {
             IndustrialRevolution
             FillingRecipe(FreePRP(id)
                 .setIngredient(Ingredient.of(CREATE.asItem("polished_rose_quartz")))
-                .setFluidIngredient(FluidIngredient.fromFluid(INDREV.asFluid("molten_iron_still"), FluidConstants.NUGGET))
+                .setFluidIngredient(FluidIngredient.fromFluid(INDREV.asFluid("molten_iron_still"),
+                    FluidConstants.NUGGET))
                 .setResult(ProcessingOutput(CREATE.asItem("electron_tube").defaultInstance, 1f)))
         }
 
@@ -181,7 +180,9 @@ object BrassThread : TechThread {
     }
 
     @Contract("_, _, _ -> new")
-    private fun entry(output: ResourceLocation, count: Int, @Nullable other: ResourceLocation?): MechAndSmithCraft.Entry {
+    private fun entry(output: ResourceLocation,
+                      count: Int,
+                      @Nullable other: ResourceLocation?): MechAndSmithCraft.Entry {
         return entry(this.getLevel(), FAB.id("brass_machine"), output, count, other)
     }
 

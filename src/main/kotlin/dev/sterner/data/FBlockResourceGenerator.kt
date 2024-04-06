@@ -141,7 +141,7 @@ interface FBlockResourceGenerator : ItemResourceGenerator {
     val lootTableId: ResourceLocation
         get() = if (this is BlockBehaviour) {
             val thisBlock = this as BlockBehaviour
-            thisBlock.getLootTable()
+            thisBlock.lootTable
         } else {
             getBlockId().brrp_prefixed("blocks/")
         }
@@ -171,7 +171,6 @@ interface FBlockResourceGenerator : ItemResourceGenerator {
     }
 
 
-
     override fun writeRecipes(pack: RuntimeResourcePack) {
         val recipe = this.craftingRecipe
         if (recipe != null) {
@@ -186,7 +185,6 @@ interface FBlockResourceGenerator : ItemResourceGenerator {
             }
         }
     }
-
 
 
     @get:Contract(pure = true)

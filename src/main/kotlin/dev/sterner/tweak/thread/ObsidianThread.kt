@@ -1,5 +1,6 @@
 package dev.sterner.tweak.thread
 
+import dev.sterner.ModCompatHelper.Entry.*
 import dev.sterner.util.MechAndSmithCraft
 import dev.sterner.util.MechAndSmithCraft.addEntry
 import dev.sterner.util.MechAndSmithCraft.entry
@@ -8,10 +9,9 @@ import ho.artisan.lib.recipe.api.RecipeLoadingEvents.AddRecipesCallback
 import net.minecraft.resources.ResourceLocation
 import org.jetbrains.annotations.Contract
 import org.jetbrains.annotations.Nullable
-import dev.sterner.ModCompatHelper.Entry.*
 
 
-object ObsidianThread : TechThread{
+object ObsidianThread : TechThread {
 
     override fun addRecipes(handler: AddRecipesCallback.RecipeHandler) {
         handler.register(
@@ -39,7 +39,9 @@ object ObsidianThread : TechThread{
     }
 
     @Contract("_, _, _ -> new")
-    private fun entry(output: ResourceLocation, count: Int, @Nullable other: ResourceLocation?): MechAndSmithCraft.Entry {
+    private fun entry(output: ResourceLocation,
+                      count: Int,
+                      @Nullable other: ResourceLocation?): MechAndSmithCraft.Entry {
         return entry(this.getLevel(), FAB.id("obsidian_machine"), output, count, other)
     }
 }

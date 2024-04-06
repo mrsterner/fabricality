@@ -7,7 +7,8 @@ import net.minecraft.network.chat.Component
 import net.minecraft.world.level.Level
 
 @JvmRecord
-data class CreateAttributeHandler(val name: Component, val viscosity: Int, val lighterThanAir: Boolean) : FluidVariantAttributeHandler {
+data class CreateAttributeHandler(val name: Component, val viscosity: Int, val lighterThanAir: Boolean) :
+    FluidVariantAttributeHandler {
 
     constructor(key: String, viscosity: Int, density: Int) : this(Component.translatable(key),
         viscosity,

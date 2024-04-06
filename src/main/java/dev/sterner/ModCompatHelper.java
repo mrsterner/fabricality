@@ -43,7 +43,7 @@ public class ModCompatHelper {
         AE2("ae2"),
 
         AD_ASTRA("ad_astra"),
-        
+
         CC("computercraft");
 
         final String modid;
@@ -195,12 +195,12 @@ public class ModCompatHelper {
 				LinkUtil.generateCurseForgeModFileUrl("quests-additions-fabric", 4774299),
 				false, false),
 
-		 */
-        ;
+		 */;
 
         final String modid;
         final Component name;
-        @Nullable final URL url;
+        @Nullable
+        final URL url;
         final boolean required;
         final boolean isClient;
 

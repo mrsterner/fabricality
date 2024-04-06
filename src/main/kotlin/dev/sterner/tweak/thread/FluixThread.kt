@@ -9,7 +9,10 @@ import com.simibubi.create.content.kinetics.mixer.CompactingRecipe
 import com.simibubi.create.content.kinetics.mixer.MixingRecipe
 import com.simibubi.create.content.processing.recipe.HeatCondition
 import com.simibubi.create.foundation.fluid.FluidIngredient
+import dev.sterner.ModCompatHelper.Entry.*
 import dev.sterner.data.FreePRP
+import dev.sterner.registry.FabricalityFluids
+import dev.sterner.util.ArrayUtil
 import dev.sterner.util.MechAndSmithCraft
 import dev.sterner.util.MechAndSmithCraft.addEntry
 import dev.sterner.util.MechAndSmithCraft.entry
@@ -20,19 +23,15 @@ import ho.artisan.lib.recipe.api.builder.VanillaRecipeBuilders
 import me.steven.indrev.recipes.machines.FluidInfuserRecipe
 import me.steven.indrev.recipes.machines.entries.InputEntry
 import me.steven.indrev.recipes.machines.entries.OutputEntry
+import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant
 import net.fabricmc.fabric.api.transfer.v1.storage.base.ResourceAmount
+import net.minecraft.core.registries.Registries
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.tags.ItemTags
 import net.minecraft.tags.TagKey
-import net.minecraft.world.item.crafting.Ingredient
-import dev.sterner.ModCompatHelper.Entry.*
-import dev.sterner.registry.FabricalityFluids
-import dev.sterner.registry.FabricalityItems
-import dev.sterner.util.ArrayUtil
-import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants
-import net.minecraft.core.registries.Registries
 import net.minecraft.world.item.Items
+import net.minecraft.world.item.crafting.Ingredient
 import net.minecraft.world.level.material.Fluids
 import org.jetbrains.annotations.Contract
 import javax.annotation.Nullable
@@ -289,7 +288,9 @@ object FluixThread : TechThread {
     }
 
     @Contract("_, _, _ -> new")
-    private fun entry(output: ResourceLocation, count: Int, @Nullable other: ResourceLocation?): MechAndSmithCraft.Entry {
+    private fun entry(output: ResourceLocation,
+                      count: Int,
+                      @Nullable other: ResourceLocation?): MechAndSmithCraft.Entry {
         return entry(this.getLevel(), AE2.id("controller"), output, count, other)
     }
 

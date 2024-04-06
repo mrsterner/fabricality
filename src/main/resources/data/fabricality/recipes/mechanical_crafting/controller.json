@@ -1,6 +1,12 @@
 {
   "type": "create:mechanical_crafting",
-  "pattern": ["AAAAA", "ASSSA", "GS SG", "ASSSA", "AAMAA"],
+  "pattern": [
+    "AAAAA",
+    "ASSSA",
+    "GS SG",
+    "ASSSA",
+    "AAMAA"
+  ],
   "key": {
     "A": {
       "item": "fabricality:matter_plastics"

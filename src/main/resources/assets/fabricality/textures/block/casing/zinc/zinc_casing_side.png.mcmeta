@@ -1,7 +1,9 @@
 {
-	"ctm": {
-		"ctm_version": 1,
-		"type": "ctm",
-		"textures": [ "cabricality:block/casing/zinc/zinc_casing_ctm" ]
-	}
+  "ctm": {
+    "ctm_version": 1,
+    "type": "ctm",
+    "textures": [
+      "cabricality:block/casing/zinc/zinc_casing_ctm"
+    ]
+  }
 }

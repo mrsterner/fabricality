@@ -1,18 +1,13 @@
 package dev.sterner.tweak
 
-import com.simibubi.create.AllRecipeTypes
 import com.simibubi.create.content.kinetics.crusher.CrushingRecipe
 import com.simibubi.create.content.kinetics.fan.processing.SplashingRecipe
 import com.simibubi.create.content.kinetics.millstone.MillingRecipe
-import com.simibubi.create.content.processing.basin.BasinRecipe
-import com.simibubi.create.content.processing.recipe.HeatCondition
 import com.simibubi.create.content.processing.recipe.ProcessingOutput
-import com.simibubi.create.foundation.fluid.FluidIngredient
 import dev.sterner.Fabricality
 import dev.sterner.data.FreePRP
 import dev.sterner.util.RecipeUtil
 import ho.artisan.lib.recipe.api.RecipeLoadingEvents
-import io.github.fabricators_of_create.porting_lib.fluids.FluidStack
 import me.steven.indrev.recipes.machines.PulverizerRecipe
 import me.steven.indrev.recipes.machines.entries.InputEntry
 import me.steven.indrev.recipes.machines.entries.OutputEntry

@@ -3,8 +3,8 @@ package dev.sterner.client.plugin.emi
 import dev.emi.emi.api.EmiPlugin
 import dev.emi.emi.api.EmiRegistry
 import dev.emi.emi.api.stack.EmiStack
-import dev.sterner.tweak.RecipeTweaks
 import dev.sterner.ModCompatHelper
+import dev.sterner.tweak.RecipeTweaks
 import java.util.*
 
 class FabEMIClientPlugin : EmiPlugin {

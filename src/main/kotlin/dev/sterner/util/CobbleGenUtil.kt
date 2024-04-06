@@ -18,6 +18,7 @@ object CobbleGenUtil {
         val upState: BlockState = world.getBlockState(pos.relative(Direction.UP))
         return if (COBBLE_GEN_BLOCK_MAP.containsKey(upState.block)
         ) COBBLE_GEN_BLOCK_MAP[upState.block]!!.defaultBlockState()
-        else COBBLE_GEN_BLOCK_MAP.values.stream().toList()[Random().nextInt(COBBLE_GEN_BLOCK_MAP.size)].defaultBlockState()
+        else COBBLE_GEN_BLOCK_MAP.values.stream()
+            .toList()[Random().nextInt(COBBLE_GEN_BLOCK_MAP.size)].defaultBlockState()
     }
 }

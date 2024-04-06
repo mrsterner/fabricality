@@ -1,8 +1,6 @@
 package dev.sterner.blocks.entity
 
 import com.simibubi.create.content.equipment.goggles.IHaveGoggleInformation
-import dev.sterner.Fabricality
-import dev.sterner.registry.FabricalityBlockEntityTypes
 import dev.sterner.registry.FabricalityBlocks
 import dev.sterner.registry.FabricalityFluids
 import io.github.fabricators_of_create.porting_lib.transfer.TransferUtil
@@ -22,10 +20,10 @@ import net.minecraft.world.level.block.RotatedPillarBlock
 import net.minecraft.world.level.block.entity.BlockEntity
 import net.minecraft.world.level.block.entity.BlockEntityType
 import net.minecraft.world.level.block.state.BlockState
-import java.util.*
 
 
-class ExtractorMachineBlockEntity(pos: BlockPos, blockState: BlockState) : BlockEntity(TYPE, pos, blockState), IHaveGoggleInformation {
+class ExtractorMachineBlockEntity(pos: BlockPos, blockState: BlockState) : BlockEntity(TYPE, pos, blockState),
+    IHaveGoggleInformation {
 
     val storage: SingleVariantStorage<FluidVariant> = object : SingleVariantStorage<FluidVariant>() {
         override fun getBlankVariant(): FluidVariant {
@@ -46,7 +44,10 @@ class ExtractorMachineBlockEntity(pos: BlockPos, blockState: BlockState) : Block
 
     companion object {
         val TYPE: BlockEntityType<ExtractorMachineBlockEntity> = FabricBlockEntityTypeBuilder
-            .create({ blockPos: BlockPos?, blockState: BlockState? -> ExtractorMachineBlockEntity(blockPos!!, blockState!!) },
+            .create({ blockPos: BlockPos?, blockState: BlockState? ->
+                ExtractorMachineBlockEntity(blockPos!!,
+                    blockState!!)
+            },
                 FabricalityBlocks.EXTRACTOR).build()
     }
 
@@ -98,8 +99,10 @@ class ExtractorMachineBlockEntity(pos: BlockPos, blockState: BlockState) : Block
                     var count = 0
 
                     // Get a range of 2 blocks in every direction
-                    val bottomPoint = topBlock.relative(Direction.DOWN, 2).relative(Direction.WEST, 2).relative(Direction.SOUTH, 2)
-                    val topPoint = topBlock.relative(Direction.UP, 2).relative(Direction.EAST, 2).relative(Direction.NORTH, 2)
+                    val bottomPoint =
+                        topBlock.relative(Direction.DOWN, 2).relative(Direction.WEST, 2).relative(Direction.SOUTH, 2)
+                    val topPoint =
+                        topBlock.relative(Direction.UP, 2).relative(Direction.EAST, 2).relative(Direction.NORTH, 2)
                     for (value in BlockPos.betweenClosed(bottomPoint, topPoint)) {
                         if (isPersistentLeaves(world.getBlockState(value))) count++
                     }
@@ -120,7 +123,8 @@ class ExtractorMachineBlockEntity(pos: BlockPos, blockState: BlockState) : Block
     private fun isVecLog(blockState: BlockState): Boolean {
         if (blockState.block is RotatedPillarBlock) {
             var block = blockState.block as RotatedPillarBlock
-            var bl: Boolean = BuiltInRegistries.BLOCK.getTag(BlockTags.LOGS).get().stream().anyMatch { blockHolder -> blockHolder.value() === block }
+            var bl: Boolean = BuiltInRegistries.BLOCK.getTag(BlockTags.LOGS).get().stream()
+                .anyMatch { blockHolder -> blockHolder.value() === block }
             var bl2 = blockState.getValue(RotatedPillarBlock.AXIS) === Direction.Axis.Y
             return bl && bl2
         }
@@ -128,7 +132,7 @@ class ExtractorMachineBlockEntity(pos: BlockPos, blockState: BlockState) : Block
     }
 
     private fun isRubberTree(state: BlockState): Boolean {
-        return BuiltInRegistries.BLOCK.getKey(state.block).getPath().contains("rubber")
+        return BuiltInRegistries.BLOCK.getKey(state.block).path.contains("rubber")
     }
 
     override fun load(tag: CompoundTag) {

@@ -5,7 +5,7 @@ import ho.artisan.lib.recipe.api.RecipeLoadingEvents.*
 import net.minecraft.resources.ResourceLocation
 
 
-interface TechThread{
+interface TechThread {
 
     companion object {
         val THREADS: List<TechThread> = listOf(

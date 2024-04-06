@@ -5,10 +5,8 @@ import dev.sterner.ModCompatHelper
 import ho.artisan.lib.recipe.api.RecipeLoadingEvents.AddRecipesCallback
 import ho.artisan.lib.recipe.api.RecipeLoadingEvents.RemoveRecipesCallback
 import ho.artisan.lib.recipe.api.builder.VanillaRecipeBuilders
-import ho.artisan.lib.recipe.mixin.TransformSmithingRecipeAccessor
 import net.minecraft.core.RegistryAccess
 import net.minecraft.core.registries.BuiltInRegistries
-import net.minecraft.core.registries.Registries
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
@@ -91,7 +89,11 @@ object MechAndSmithCraft {
         return Fabricality.id("threads", entry.level, "tweak", type, entry.output.path)
     }
 
-    fun entry(level: String, input: ResourceLocation, output: ResourceLocation, count: Int, @Nullable other: ResourceLocation?): Entry {
+    fun entry(level: String,
+              input: ResourceLocation,
+              output: ResourceLocation,
+              count: Int,
+              @Nullable other: ResourceLocation?): Entry {
         return Entry(level, input, output, count, other)
     }
 
@@ -106,11 +108,11 @@ object MechAndSmithCraft {
             return other != null
         }
 
-        fun getInputItem(): Item? {
+        fun getInputItem(): Item {
             return BuiltInRegistries.ITEM[input]
         }
 
-        fun getOutputItem(): Item? {
+        fun getOutputItem(): Item {
             return BuiltInRegistries.ITEM[output]
         }
 

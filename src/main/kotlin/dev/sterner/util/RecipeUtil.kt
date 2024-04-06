@@ -10,7 +10,6 @@ import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.crafting.*
-import javax.annotation.Nullable
 
 
 object RecipeUtil {
@@ -57,7 +56,6 @@ object RecipeUtil {
 
         return json
     }
-
 
 
     fun swapRecipeOutput(

@@ -30,10 +30,6 @@ abstract class AbstractMachineBlock(settings: Properties) : HorizontalDirectiona
         return true
     }
 
-    override fun doItemModel(): Boolean {
-        return super.doItemModel()
-    }
-
     override fun doLootTable(): Boolean {
         return true
     }

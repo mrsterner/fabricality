@@ -6,7 +6,6 @@ import dev.sterner.Fabricality
 import dev.sterner.data.FreePRP
 import ho.artisan.lib.recipe.api.RecipeLoadingEvents.AddRecipesCallback
 import net.minecraft.core.registries.BuiltInRegistries
-import net.minecraft.core.registries.Registries
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.crafting.Ingredient
@@ -60,25 +59,25 @@ object CuttingRecipeTweaks {
                 }
             }
         }
-/*
-        handler.register(createId(ModCompat.Entry.TERRESTRIA.id("small_oak_log"))
-        ) { id: ResourceLocation ->
-            createRecipe(id,
-                Mod.Entry.TERRESTRIA.id("small_oak_log"),
-                Mod.Entry.TERRESTRIA.id("stripped_small_oak_log"),
-                1,
-                50)
-        }
-        handler.register(createId(Mod.Entry.TERRESTRIA.id("stripped_small_oak_log"))
-        ) { id: ResourceLocation ->
-            createRecipe(id,
-                Mod.Entry.TERRESTRIA.id("stripped_small_oak_log"),
-                Mod.Entry.MC.id("oak_planks"),
-                6,
-                50)
-        }
+        /*
+                handler.register(createId(ModCompat.Entry.TERRESTRIA.id("small_oak_log"))
+                ) { id: ResourceLocation ->
+                    createRecipe(id,
+                        Mod.Entry.TERRESTRIA.id("small_oak_log"),
+                        Mod.Entry.TERRESTRIA.id("stripped_small_oak_log"),
+                        1,
+                        50)
+                }
+                handler.register(createId(Mod.Entry.TERRESTRIA.id("stripped_small_oak_log"))
+                ) { id: ResourceLocation ->
+                    createRecipe(id,
+                        Mod.Entry.TERRESTRIA.id("stripped_small_oak_log"),
+                        Mod.Entry.MC.id("oak_planks"),
+                        6,
+                        50)
+                }
 
- */
+         */
     }
 
     private fun createRecipe(
@@ -95,6 +94,6 @@ object CuttingRecipeTweaks {
 
     private fun createId(input: ResourceLocation): ResourceLocation {
         return Fabricality
-            .id(("tweaks/wood_cutting/" + input.getNamespace()).toString() + "/" + input.getPath())
+            .id(("tweaks/wood_cutting/" + input.namespace).toString() + "/" + input.path)
     }
 }

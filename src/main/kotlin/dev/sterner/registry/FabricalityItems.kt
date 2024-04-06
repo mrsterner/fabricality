@@ -14,23 +14,26 @@ import net.minecraft.world.item.Item
 import pers.solid.brrp.v1.model.ModelJsonBuilder
 import java.util.*
 import java.util.function.Consumer
-import kotlin.collections.List
-import kotlin.collections.forEach
-import kotlin.collections.listOf
 
 
 object FabricalityItems {
 
     private val ITEM_GROUPING_MAP = mutableSetOf<Item>()
 
-    val ALGAL_BLEND: Item = registerItemModeled("algal_blend", Item(FabricItemSettings()), ItemModelGenerator.generated("item", "algal_blend"))
+    val ALGAL_BLEND: Item = registerItemModeled("algal_blend",
+        Item(FabricItemSettings()),
+        ItemModelGenerator.generated("item", "algal_blend"))
 
-    val ALGAL_BRICK: Item = registerItemModeled("algal_brick", Item(FabricItemSettings()), ItemModelGenerator.generated("item", "algal_brick"))
+    val ALGAL_BRICK: Item = registerItemModeled("algal_brick",
+        Item(FabricItemSettings()),
+        ItemModelGenerator.generated("item", "algal_brick"))
 
-    val MATTER_PLASTICS: Item = registerItemModeled("matter_plastics", Item(FabricItemSettings()), ItemModelGenerator.generated("item", "matter_plastics"))
+    val MATTER_PLASTICS: Item = registerItemModeled("matter_plastics",
+        Item(FabricItemSettings()),
+        ItemModelGenerator.generated("item", "matter_plastics"))
 
-    val STONE_ROD: Item = registerItemModeled("stone_rod", Item(FabricItemSettings()), ItemModelGenerator.generated("item", "stone_rod"))
-
+    val STONE_ROD: Item =
+        registerItemModeled("stone_rod", Item(FabricItemSettings()), ItemModelGenerator.generated("item", "stone_rod"))
 
 
     val SAW_BLADE: Item = registerItemModeled("saw_blade",
@@ -38,17 +41,29 @@ object FabricalityItems {
         ItemModelGenerator.generated("item", "saw_blade")
     )
 
-    val RUBBER: Item = registerItemModeled("rubber", Item(FabricItemSettings()), ItemModelGenerator.generated("item", "rubber"))
+    val RUBBER: Item =
+        registerItemModeled("rubber", Item(FabricItemSettings()), ItemModelGenerator.generated("item", "rubber"))
 
-    val CURED_RUBBER: Item = registerItemModeled("cured_rubber", Item(FabricItemSettings()), ItemModelGenerator.generated("item", "cured_rubber"))
+    val CURED_RUBBER: Item = registerItemModeled("cured_rubber",
+        Item(FabricItemSettings()),
+        ItemModelGenerator.generated("item", "cured_rubber"))
 
-    val FLASH_DRIVE: Item = registerItemModeled("flash_drive", Item(FabricItemSettings()), ItemModelGenerator.generated("item", "boot_medium"))
+    val FLASH_DRIVE: Item = registerItemModeled("flash_drive",
+        Item(FabricItemSettings()),
+        ItemModelGenerator.generated("item", "boot_medium"))
 
-    val CIRCUIT_SCRAP: Item = registerItemModeled("circuit_scrap", Item(FabricItemSettings()), ItemModelGenerator.generated("item", "circuit_scrap"))
+    val CIRCUIT_SCRAP: Item = registerItemModeled("circuit_scrap",
+        Item(FabricItemSettings()),
+        ItemModelGenerator.generated("item", "circuit_scrap"))
 
-    val COAL_COKE: Item = registerItemModeled("coal_coke", Item(FabricItemSettings()), ItemModelGenerator.generated("item", "coal_coke"))
-    val COKE_CHUNK: Item = registerItemModeled("coke_chunk", Item(FabricItemSettings()), ItemModelGenerator.generated("item", "coke_chunk"))
-    val INCOMPLETE_COKE_CHUNK: Item = registerItemModeled("incomplete_coke_chunk", SequencedAssemblyItem(FabricItemSettings()), ItemModelGenerator.generated("item", "incomplete_coke_chunk"))
+    val COAL_COKE: Item =
+        registerItemModeled("coal_coke", Item(FabricItemSettings()), ItemModelGenerator.generated("item", "coal_coke"))
+    val COKE_CHUNK: Item = registerItemModeled("coke_chunk",
+        Item(FabricItemSettings()),
+        ItemModelGenerator.generated("item", "coke_chunk"))
+    val INCOMPLETE_COKE_CHUNK: Item = registerItemModeled("incomplete_coke_chunk",
+        SequencedAssemblyItem(FabricItemSettings()),
+        ItemModelGenerator.generated("item", "incomplete_coke_chunk"))
 
     val CRUSHED_RAW_MATERIALS: List<String> = listOf("desh", "ostrum", "calorite", "cobalt")
     val DUSTS: List<String> = listOf("zinc", "desh", "ostrum", "calorite", "cobalt", "diamond", "emerald", "nickel")
@@ -77,14 +92,14 @@ object FabricalityItems {
 
         Arrays.stream(MechanismItem.Type.values()).forEach { type ->
             registerItemModeled(
-                type.itemId.getPath(),
+                type.itemId.path,
                 type.item,
-                ItemModelGenerator.generated(type.item.textureId.getPath())
+                ItemModelGenerator.generated(type.item.textureId.path)
             )
             registerItemModeled(
-                type.incompleteItemId.getPath(),
+                type.incompleteItemId.path,
                 type.incompleteItem,
-                ItemModelGenerator.generated(type.item.incompleteTextureId.getPath())
+                ItemModelGenerator.generated(type.item.incompleteTextureId.path)
             )
         }
 

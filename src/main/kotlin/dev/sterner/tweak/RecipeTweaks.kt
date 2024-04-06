@@ -30,7 +30,8 @@ import net.minecraft.world.level.ItemLike
 import java.util.*
 
 
-class RecipeTweaks : RecipeLoadingEvents.AddRecipesCallback, RecipeLoadingEvents.ModifyRecipesCallback, RecipeLoadingEvents.RemoveRecipesCallback {
+class RecipeTweaks : RecipeLoadingEvents.AddRecipesCallback, RecipeLoadingEvents.ModifyRecipesCallback,
+    RecipeLoadingEvents.RemoveRecipesCallback {
     companion object {
 
         lateinit var registryAccess: RegistryAccess
@@ -107,32 +108,31 @@ class RecipeTweaks : RecipeLoadingEvents.AddRecipesCallback, RecipeLoadingEvents
                     )
                 }
             }
-/*
-            handler.register(
-                recipeId("compacting", "aquamarine_quartz")
-            ) { id ->
-                CompactingRecipe(
-                    FreePRP(id)
-                        .setIngredient(INDREV.asIngredient("nikolite_dust"))
-                        .setFluidIngredient(FluidIngredient.fromFluid(FabricalityFluids.REDSTONE, FluidConstants.NUGGET))
-                        .setResult(FAB.asProcessingOutput("aquamarine_quartz"))
-                        .setHeatRequirement(HeatCondition.HEATED)
-                )
-            }
+            /*
+                        handler.register(
+                            recipeId("compacting", "aquamarine_quartz")
+                        ) { id ->
+                            CompactingRecipe(
+                                FreePRP(id)
+                                    .setIngredient(INDREV.asIngredient("nikolite_dust"))
+                                    .setFluidIngredient(FluidIngredient.fromFluid(FabricalityFluids.REDSTONE, FluidConstants.NUGGET))
+                                    .setResult(FAB.asProcessingOutput("aquamarine_quartz"))
+                                    .setHeatRequirement(HeatCondition.HEATED)
+                            )
+                        }
 
-            handler.register(
-                recipeId("sandpaper_polishing", "aquamarine_quartz")
-            ) { id ->
-                SandPaperPolishingRecipe(
-                    FreePRP(id)
-                        .setIngredient(FAB.asIngredient("aquamarine_quartz"))
-                        .setResult(INDREV.asProcessingOutput("nikolite_ingot"))
-                )
-            }
+                        handler.register(
+                            recipeId("sandpaper_polishing", "aquamarine_quartz")
+                        ) { id ->
+                            SandPaperPolishingRecipe(
+                                FreePRP(id)
+                                    .setIngredient(FAB.asIngredient("aquamarine_quartz"))
+                                    .setResult(INDREV.asProcessingOutput("nikolite_ingot"))
+                            )
+                        }
 
- */
+             */
         }
-
 
 
 // Dusts
@@ -165,7 +165,8 @@ class RecipeTweaks : RecipeLoadingEvents.AddRecipesCallback, RecipeLoadingEvents
             FillingRecipe(
                 FreePRP(id)
                     .setIngredient(FAB.asIngredient("nickel_ingot"))
-                    .setFluidIngredient(FluidIngredient.fromFluid(INDREV.asFluid("molten_iron_still"), FluidConstants.NUGGET * 6))
+                    .setFluidIngredient(FluidIngredient.fromFluid(INDREV.asFluid("molten_iron_still"),
+                        FluidConstants.NUGGET * 6))
                     .setResult(FAB.asProcessingOutput("nickel_compound"))
             )
         }
@@ -207,14 +208,14 @@ class RecipeTweaks : RecipeLoadingEvents.AddRecipesCallback, RecipeLoadingEvents
                 .ingredient('M', MC.asIngredient("diamond"))
                 .output(FAB.asStack("diamond_saw")).build(id, "")
         }
-/*
-        handler.register(recipeId("smithing", "netherite_saw")
-        ) { id ->
-            SmithingRecipe(id, FAB.asIngredient("diamond_saw"),
-                MC.asIngredient("netherite_ingot"), FAB.asStack("netherite_saw"))
-        }
+        /*
+                handler.register(recipeId("smithing", "netherite_saw")
+                ) { id ->
+                    SmithingRecipe(id, FAB.asIngredient("diamond_saw"),
+                        MC.asIngredient("netherite_ingot"), FAB.asStack("netherite_saw"))
+                }
 
- */
+         */
 
         handler.register(recipeId("pressing", "zinc_sheet")
         ) { id ->

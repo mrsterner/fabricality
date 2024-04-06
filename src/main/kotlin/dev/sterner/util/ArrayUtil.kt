@@ -10,6 +10,8 @@ object ArrayUtil {
     }
 
     fun <T> asArrayList(stream: Stream<T>): ArrayList<T> {
-        return stream.collect({ ArrayList<T>() }, { list, item -> list.add(item) }, { list1, list2 -> list1.addAll(list2) })
+        return stream.collect({ ArrayList<T>() },
+            { list, item -> list.add(item) },
+            { list1, list2 -> list1.addAll(list2) })
     }
 }

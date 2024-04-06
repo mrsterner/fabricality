@@ -2,11 +2,11 @@ package dev.sterner.blocks
 
 import dev.sterner.Fabricality
 import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
-import net.minecraft.world.level.material.MapColor
-import java.util.function.Supplier
 import net.minecraft.client.renderer.RenderType
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.level.block.SoundType
+import net.minecraft.world.level.material.MapColor
+import java.util.function.Supplier
 
 
 enum class MachineBlockEntry(

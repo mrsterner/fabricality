@@ -1,6 +1,7 @@
 package dev.sterner.tweak.thread
 
 import com.simibubi.create.content.kinetics.deployer.ManualApplicationRecipe
+import dev.sterner.ModCompatHelper.Entry.*
 import dev.sterner.data.FreePRP
 import dev.sterner.util.MechAndSmithCraft
 import dev.sterner.util.MechAndSmithCraft.addEntry
@@ -12,7 +13,6 @@ import net.minecraft.tags.ItemTags
 import net.minecraft.world.item.crafting.Ingredient
 import org.jetbrains.annotations.Contract
 import javax.annotation.Nullable
-import dev.sterner.ModCompatHelper.Entry.*
 
 
 object ZincThread : TechThread {
@@ -65,7 +65,9 @@ object ZincThread : TechThread {
     }
 
     @Contract("_, _, _ -> new")
-    private fun entry(output: ResourceLocation, count: Int, @Nullable other: ResourceLocation): MechAndSmithCraft.Entry {
+    private fun entry(output: ResourceLocation,
+                      count: Int,
+                      @Nullable other: ResourceLocation): MechAndSmithCraft.Entry {
         return entry(this.getLevel(), FAB.id("zinc_machine"), output, count, other)
     }
 }
