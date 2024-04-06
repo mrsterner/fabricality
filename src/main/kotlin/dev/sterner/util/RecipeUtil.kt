@@ -30,25 +30,35 @@ object RecipeUtil {
     }
 
     fun generateMelting(
-            input: ResourceLocation, fluid: ResourceLocation,
+            input: ResourceLocation,
+            fluid: ResourceLocation,
             amount: Long,
-            @Nullable byproduct: ResourceLocation?,
-            byAmount: Long, temperature: Int, time: Int
+            heatRequirement: Boolean
     ): JsonObject {
-        val json: JsonObject = JsonObject()
+        val json = JsonObject()
 
-        json.addProperty("type", ResourceLocation("tconstruct", "melting").toString())
-        json.add("ingredient", JsonBuilder.itemEntry(input))
-        json.add("result", JsonBuilder.fluidEntry(fluid, amount))
-        json.addProperty("temperature", temperature)
-        json.addProperty("time", time)
-        if (byproduct != null) {
-            val byproducts: JsonArray = JsonArray()
-            byproducts.add(JsonBuilder.fluidEntry(byproduct, byAmount))
-            json.add("byproducts", byproducts)
-        }
+        json.addProperty("type", "create:mixing")
+        json.addProperty("heatRequirement", heatRequirement)
+
+        // Ingredients array
+        val ingredientsArray = JsonArray()
+        val ingredientObject = JsonObject()
+        ingredientObject.addProperty("item", input.toString())
+        ingredientsArray.add(ingredientObject)
+        json.add("ingredients", ingredientsArray)
+
+        // Results array
+        val resultsArray = JsonArray()
+        val resultObject = JsonObject()
+        resultObject.addProperty("amount", amount)
+        resultObject.addProperty("fluid", fluid.toString())
+        resultsArray.add(resultObject)
+        json.add("results", resultsArray)
+
         return json
     }
+
+
 
     fun swapRecipeOutput(
             recipe: Recipe<*>,

@@ -1,7 +1,7 @@
 package dev.sterner.item
 
 import dev.sterner.Fabricality
-import dev.sterner.util.ModCompat
+import dev.sterner.ModCompatHelper
 import net.minecraft.core.registries.Registries
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.tags.TagKey
@@ -21,6 +21,6 @@ object FabItemTags {
     val CATALYST_JARS: TagKey<Item> = TagKey.create(Registries.ITEM, Fabricality.id("jars/catalyst"))
 
     // Stripped
-    val STRIPPED_LOGS: TagKey<Item> = TagKey.create(Registries.ITEM, ModCompat.Entry.C.id("stripped_logs"))
-    val STRIPPED_WOODS: TagKey<Item> = TagKey.create(Registries.ITEM, ModCompat.Entry.C.id("stripped_wood"))
+    val STRIPPED_LOGS: TagKey<Item> = TagKey.create(Registries.ITEM, ModCompatHelper.Entry.C.id("stripped_logs"))
+    val STRIPPED_WOODS: TagKey<Item> = TagKey.create(Registries.ITEM, ModCompatHelper.Entry.C.id("stripped_wood"))
 }

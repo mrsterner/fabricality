@@ -1,6 +1,6 @@
 package dev.sterner.tweak
 
-import dev.sterner.util.ModCompat.Entry.*
+import dev.sterner.ModCompatHelper.Entry.*
 import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.core.registries.Registries
 import net.minecraft.resources.ResourceLocation

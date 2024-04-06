@@ -3,7 +3,6 @@ package dev.sterner
 import dev.sterner.Fabricality.RRPs
 import dev.sterner.blocks.CasingBlockEntry
 import dev.sterner.blocks.MachineBlockEntry
-import dev.sterner.client.FluidRendererRegistry
 import dev.sterner.tweak.OreProcessingEntry
 import net.fabricmc.api.ClientModInitializer
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap
@@ -16,7 +15,6 @@ object FabricalityClient : ClientModInitializer {
 
 	override fun onInitializeClient() {
 
-		FluidRendererRegistry.renderFluidInit()
 		//ColorRegistryListener.load()
 		//WoodCuttingEntry.checkAll()
 		OreProcessingEntry.checkAll()

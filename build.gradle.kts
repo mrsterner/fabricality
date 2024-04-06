@@ -142,6 +142,10 @@ dependencies {
 	modImplementation("com.github.HO-Artisan:RecipeInProgramming:${recipe_in_programming_version}")
 }
 
+loom {
+	accessWidenerPath = file("src/main/resources/fabricality.accesswidener")
+}
+
 java {
 	withSourcesJar()
 

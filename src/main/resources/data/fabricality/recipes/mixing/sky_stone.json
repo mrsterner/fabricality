@@ -1,0 +1,27 @@
+{
+  "type": "create:mixing",
+  "ingredients": [
+    {
+      "item": "ae2:sky_dust"
+    },
+    {
+      "item": "ae2:sky_dust"
+    },
+    {
+      "item": "ae2:sky_dust"
+    },
+    {
+      "amount": 27000,
+      "fluid": "minecraft:water"
+    }
+  ],
+  "results": [
+    {
+      "item": "ae2:certus_quartz_crystal"
+    },
+    {
+      "amount": 27000,
+      "fluid": "fabricality:sky_stone"
+    }
+  ]
+}

@@ -27,7 +27,7 @@ enum class MachineBlockEntry(
     BRASS(
         "brass",
         Supplier<RenderType> { RenderType.translucent() },
-        ComplexMachineBlock(FabricBlockSettings.create()
+        ComplexMachineBlock(FabricBlockSettings.create().nonOpaque()
             .mapColor(MapColor.COLOR_YELLOW)
             .strength(3.0f, 6.0f))
     ),

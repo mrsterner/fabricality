@@ -1,70 +1,509 @@
 package dev.sterner.registry
 
+import com.simibubi.create.AllFluids
+import com.simibubi.create.AllTags
+import com.tterrag.registrate.fabric.SimpleFlowableFluid
+import com.tterrag.registrate.util.entry.FluidEntry
 import dev.sterner.Fabricality
-import dev.sterner.data.FluidBlockStatesGenerator
-import dev.sterner.data.FluidModelGenerator
-import dev.sterner.fluid.BaseFluid
-import dev.sterner.fluid.IFluid
-import net.minecraft.core.Registry
-import net.minecraft.core.registries.BuiltInRegistries
+import dev.sterner.fluid.CreateAttributeHandler
+import net.fabricmc.fabric.api.transfer.v1.context.ContainerItemContext
+import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants
+import net.fabricmc.fabric.api.transfer.v1.fluid.FluidStorage
+import net.fabricmc.fabric.api.transfer.v1.fluid.FluidStorage.CombinedItemApiProvider
+import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant
+import net.fabricmc.fabric.api.transfer.v1.fluid.base.EmptyItemFluidStorage
+import net.fabricmc.fabric.api.transfer.v1.fluid.base.FullItemFluidStorage
+import net.fabricmc.fabric.api.transfer.v1.item.ItemVariant
 import net.minecraft.core.registries.Registries
-import net.minecraft.resources.ResourceLocation
-import net.minecraft.world.level.material.FlowingFluid
-import net.minecraft.world.level.material.Fluid
-import javax.swing.text.html.parser.DTDConstants.NUMBERS
+import net.minecraft.tags.FluidTags
+import net.minecraft.world.item.Items
 
 
 object FabricalityFluids {
 
-    val RESIN: Fluid = BaseFluid("resin")
-    val REDSTONE: Fluid = BaseFluid("redstone")
-    val MOLTED_IRON: Fluid = BaseFluid("molten_iron")
-    val MOLTED_GOLD: Fluid = BaseFluid("molten_gold")
-    val MOLTED_COPPER: Fluid = BaseFluid("molten_copper")
-    val MOLTED_ZINC: Fluid = BaseFluid("molten_zinc")
-    val MOLTED_TIN: Fluid = BaseFluid("molten_tin")
-    val MOLTED_LEAD: Fluid = BaseFluid("molten_lead")
-    val MOLTED_DESH: Fluid = BaseFluid("molten_desh")
-    val MOLTED_OSTRUM: Fluid = BaseFluid("molten_ostrum")
-    val MOLTED_CALORITE: Fluid = BaseFluid("molten_calorite")
-
-
-    fun register() {
-        registerIFluids(RESIN, REDSTONE, MOLTED_IRON, MOLTED_GOLD, MOLTED_COPPER, MOLTED_ZINC, MOLTED_TIN, MOLTED_LEAD, MOLTED_DESH, MOLTED_OSTRUM, MOLTED_CALORITE)
-
+    init {
+        Fabricality.REGISTRATE.setCreativeTab(Fabricality.GENERAL_KEY)
     }
 
-    private fun registerFluid(id: ResourceLocation?, stillId: ResourceLocation?, fluid: Fluid) {
-        Registry.register(BuiltInRegistries.FLUID, id, fluid)
-        if (!fluid.isSource(null)) FabricalityBlocks.registerFluidBlock(stillId, fluid as FlowingFluid)
-    }
-
-    private fun registerIFluid(fluid: Fluid) {
-        val iFluid = fluid as IFluid
-        registerFluid(iFluid.id, (iFluid.typical as IFluid).id, fluid)
-        iFluid.registerBucketItem(BuiltInRegistries.ITEM)
-        if (fluid.isSource(null)) {
-            Fabricality.RRPs.CLIENT_RESOURCES.addBlockState(
-                iFluid.id,
-                FluidBlockStatesGenerator.simple(iFluid.toBlock(), iFluid.name)
-            )
-            Fabricality.RRPs.CLIENT_RESOURCES.addBlockState(
-                Fabricality.id(iFluid.name + "_flowing"),
-                FluidBlockStatesGenerator.simple(iFluid.toBlock(), iFluid.name)
-            )
-            Fabricality.RRPs.CLIENT_RESOURCES.addModel(
-                Fabricality.id("block/fluid/" + iFluid.name),
-                FluidModelGenerator.simple(iFluid.textureName + "_still",
-                    iFluid.textureName)
-            )
+    val SOUL: FluidEntry<SimpleFlowableFluid.Flowing> = Fabricality.REGISTRATE.standardFluid("soul")
+        .lang("Soul")
+        .tag(AllTags.forgeFluidTag("soul"), FluidTags.WATER) // fabric: water tag controls physics
+        .fluidProperties { p: SimpleFlowableFluid.Properties ->
+            p.levelDecreasePerBlock(1)
+                .tickRate(50)
+                .flowSpeed(6)
+                .blastResistance(100f)
         }
-    }
+        .fluidAttributes {
+            CreateAttributeHandler("block.fabricality.soul",
+                500,
+                400)
+        }
+        .onRegisterAfter(Registries.ITEM
+        ) { redstone: SimpleFlowableFluid.Flowing ->
+            val source = redstone.source
+            // transfer values
+            FluidStorage.combinedItemApiProvider(source.bucket).register(
+                CombinedItemApiProvider { context: ContainerItemContext? ->
+                    FullItemFluidStorage(context,
+                        { bucket: ItemVariant? ->
+                            ItemVariant.of(Items.BUCKET)
+                        },
+                        FluidVariant.of(source),
+                        FluidConstants.BUCKET)
+                })
+            FluidStorage.combinedItemApiProvider(Items.BUCKET)
+                .register(
+                    CombinedItemApiProvider { context: ContainerItemContext? ->
+                        EmptyItemFluidStorage(context,
+                            { bucket: ItemVariant? ->
+                                ItemVariant.of(source.bucket)
+                            },
+                            source,
+                            FluidConstants.BUCKET)
+                    })
+        }
+        .register()
 
-    private fun registerIFluids(vararg fluids: Fluid) {
-        for (fluid in fluids) registerIFluid(fluid)
-    }
+    val RAW_LOGIC: FluidEntry<SimpleFlowableFluid.Flowing> = Fabricality.REGISTRATE.standardFluid("raw_logic")
+        .lang("Raw Logic")
+        .tag(AllTags.forgeFluidTag("raw_logic"), FluidTags.WATER) // fabric: water tag controls physics
+        .fluidProperties { p: SimpleFlowableFluid.Properties ->
+            p.levelDecreasePerBlock(1)
+                .tickRate(25)
+                .flowSpeed(4)
+                .blastResistance(100f)
+        }
+        .fluidAttributes {
+            CreateAttributeHandler("block.fabricality.raw_logic",
+                1000,
+                1000)
+        }
+        .onRegisterAfter(Registries.ITEM
+        ) { redstone: SimpleFlowableFluid.Flowing ->
+            val source = redstone.source
+            // transfer values
+            FluidStorage.combinedItemApiProvider(source.bucket).register(
+                CombinedItemApiProvider { context: ContainerItemContext? ->
+                    FullItemFluidStorage(context,
+                        { bucket: ItemVariant? ->
+                            ItemVariant.of(Items.BUCKET)
+                        },
+                        FluidVariant.of(source),
+                        FluidConstants.BUCKET)
+                })
+            FluidStorage.combinedItemApiProvider(Items.BUCKET)
+                .register(
+                    CombinedItemApiProvider { context: ContainerItemContext? ->
+                        EmptyItemFluidStorage(context,
+                            { bucket: ItemVariant? ->
+                                ItemVariant.of(source.bucket)
+                            },
+                            source,
+                            FluidConstants.BUCKET)
+                    })
+        }
+        .register()
 
-    private fun registerIFluids(fluids: List<Fluid>) {
-        for (fluid in fluids) registerIFluid(fluid)
-    }
+    val REDSTONE: FluidEntry<SimpleFlowableFluid.Flowing> = Fabricality.REGISTRATE.standardFluid("redstone")
+        .lang("Redstone")
+        .tag(AllTags.forgeFluidTag("redstone"), FluidTags.WATER) // fabric: water tag controls physics
+        .fluidProperties { p: SimpleFlowableFluid.Properties ->
+            p.levelDecreasePerBlock(2)
+                .tickRate(25)
+                .flowSpeed(3)
+                .blastResistance(100f)
+        }
+        .fluidAttributes {
+            CreateAttributeHandler("block.fabricality.redstone",
+                1500,
+                1400)
+        }
+        .onRegisterAfter(Registries.ITEM
+        ) { redstone: SimpleFlowableFluid.Flowing ->
+            val source = redstone.source
+            // transfer values
+            FluidStorage.combinedItemApiProvider(source.bucket).register(
+                CombinedItemApiProvider { context: ContainerItemContext? ->
+                    FullItemFluidStorage(context,
+                        { bucket: ItemVariant? ->
+                            ItemVariant.of(Items.BUCKET)
+                        },
+                        FluidVariant.of(source),
+                        FluidConstants.BUCKET)
+                })
+            FluidStorage.combinedItemApiProvider(Items.BUCKET)
+                .register(
+                    CombinedItemApiProvider { context: ContainerItemContext? ->
+                        EmptyItemFluidStorage(context,
+                            { bucket: ItemVariant? ->
+                                ItemVariant.of(source.bucket)
+                            },
+                            source,
+                            FluidConstants.BUCKET)
+                    })
+        }
+        .register()
+
+    val SKY_STONE: FluidEntry<SimpleFlowableFluid.Flowing> = Fabricality.REGISTRATE.standardFluid("sky_stone")
+        .lang("Sky Stone")
+        .tag(AllTags.forgeFluidTag("sky_stone"), FluidTags.WATER) // fabric: water tag controls physics
+        .fluidProperties { p: SimpleFlowableFluid.Properties ->
+            p.levelDecreasePerBlock(2)
+                .tickRate(25)
+                .flowSpeed(3)
+                .blastResistance(100f)
+        }
+        .fluidAttributes {
+            CreateAttributeHandler("block.fabricality.sky_stone",
+                1500,
+                1400)
+        }
+        .onRegisterAfter(Registries.ITEM
+        ) { redstone: SimpleFlowableFluid.Flowing ->
+            val source = redstone.source
+            // transfer values
+            FluidStorage.combinedItemApiProvider(source.bucket).register(
+                CombinedItemApiProvider { context: ContainerItemContext? ->
+                    FullItemFluidStorage(context,
+                        { bucket: ItemVariant? ->
+                            ItemVariant.of(Items.BUCKET)
+                        },
+                        FluidVariant.of(source),
+                        FluidConstants.BUCKET)
+                })
+            FluidStorage.combinedItemApiProvider(Items.BUCKET)
+                .register(
+                    CombinedItemApiProvider { context: ContainerItemContext? ->
+                        EmptyItemFluidStorage(context,
+                            { bucket: ItemVariant? ->
+                                ItemVariant.of(source.bucket)
+                            },
+                            source,
+                            FluidConstants.BUCKET)
+                    })
+        }
+        .register()
+
+    val RESIN: FluidEntry<SimpleFlowableFluid.Flowing> = Fabricality.REGISTRATE.standardFluid("resin")
+        .lang("Resin")
+        .tag(AllTags.forgeFluidTag("resin"), FluidTags.WATER) // fabric: water tag controls physics
+        .fluidProperties { p: SimpleFlowableFluid.Properties ->
+            p.levelDecreasePerBlock(2)
+                .tickRate(25)
+                .flowSpeed(3)
+                .blastResistance(100f)
+        }
+        .fluidAttributes {
+            CreateAttributeHandler("block.fabricality.resin",
+                1500,
+                1400)
+        }
+        .onRegisterAfter(Registries.ITEM
+        ) { redstone: SimpleFlowableFluid.Flowing ->
+            val source = redstone.source
+            // transfer values
+            FluidStorage.combinedItemApiProvider(source.bucket).register(
+                CombinedItemApiProvider { context: ContainerItemContext? ->
+                    FullItemFluidStorage(context,
+                        { bucket: ItemVariant? ->
+                            ItemVariant.of(Items.BUCKET)
+                        },
+                        FluidVariant.of(source),
+                        FluidConstants.BUCKET)
+                })
+            FluidStorage.combinedItemApiProvider(Items.BUCKET)
+                .register(
+                    CombinedItemApiProvider { context: ContainerItemContext? ->
+                        EmptyItemFluidStorage(context,
+                            { bucket: ItemVariant? ->
+                                ItemVariant.of(source.bucket)
+                            },
+                            source,
+                            FluidConstants.BUCKET)
+                    })
+        }
+        .register()
+
+    val COKE: FluidEntry<SimpleFlowableFluid.Flowing> = Fabricality.REGISTRATE.standardFluid("coke")
+        .lang("Coke")
+        .tag(AllTags.forgeFluidTag("coke"), FluidTags.WATER) // fabric: water tag controls physics
+        .fluidProperties { p: SimpleFlowableFluid.Properties ->
+            p.levelDecreasePerBlock(2)
+                .tickRate(25)
+                .flowSpeed(3)
+                .blastResistance(100f)
+        }
+        .fluidAttributes {
+            CreateAttributeHandler("block.fabricality.coke",
+                1500,
+                1400)
+        }
+        .onRegisterAfter(Registries.ITEM
+        ) { redstone: SimpleFlowableFluid.Flowing ->
+            val source = redstone.source
+            // transfer values
+            FluidStorage.combinedItemApiProvider(source.bucket).register(
+                CombinedItemApiProvider { context: ContainerItemContext? ->
+                    FullItemFluidStorage(context,
+                        { bucket: ItemVariant? ->
+                            ItemVariant.of(Items.BUCKET)
+                        },
+                        FluidVariant.of(source),
+                        FluidConstants.BUCKET)
+                })
+            FluidStorage.combinedItemApiProvider(Items.BUCKET)
+                .register(
+                    CombinedItemApiProvider { context: ContainerItemContext? ->
+                        EmptyItemFluidStorage(context,
+                            { bucket: ItemVariant? ->
+                                ItemVariant.of(source.bucket)
+                            },
+                            source,
+                            FluidConstants.BUCKET)
+                    })
+        }
+        .register()
+
+    val FINE_SAND: FluidEntry<SimpleFlowableFluid.Flowing> = Fabricality.REGISTRATE.standardFluid("fine_sand")
+        .lang("Fine Sand")
+        .tag(AllTags.forgeFluidTag("fine_sand"), FluidTags.WATER) // fabric: water tag controls physics
+        .fluidProperties { p: SimpleFlowableFluid.Properties ->
+            p.levelDecreasePerBlock(2)
+                .tickRate(25)
+                .flowSpeed(3)
+                .blastResistance(100f)
+        }
+        .fluidAttributes {
+            CreateAttributeHandler("block.fabricality.fine_sand",
+                1500,
+                1400)
+        }
+        .onRegisterAfter(Registries.ITEM
+        ) { redstone: SimpleFlowableFluid.Flowing ->
+            val source = redstone.source
+            // transfer values
+            FluidStorage.combinedItemApiProvider(source.bucket).register(
+                CombinedItemApiProvider { context: ContainerItemContext? ->
+                    FullItemFluidStorage(context,
+                        { bucket: ItemVariant? ->
+                            ItemVariant.of(Items.BUCKET)
+                        },
+                        FluidVariant.of(source),
+                        FluidConstants.BUCKET)
+                })
+            FluidStorage.combinedItemApiProvider(Items.BUCKET)
+                .register(
+                    CombinedItemApiProvider { context: ContainerItemContext? ->
+                        EmptyItemFluidStorage(context,
+                            { bucket: ItemVariant? ->
+                                ItemVariant.of(source.bucket)
+                            },
+                            source,
+                            FluidConstants.BUCKET)
+                    })
+        }
+        .register()
+
+    val WASTE: FluidEntry<SimpleFlowableFluid.Flowing> = Fabricality.REGISTRATE.standardFluid("waste")
+        .lang("Waste")
+        .tag(AllTags.forgeFluidTag("waste"), FluidTags.WATER) // fabric: water tag controls physics
+        .fluidProperties { p: SimpleFlowableFluid.Properties ->
+            p.levelDecreasePerBlock(2)
+                .tickRate(25)
+                .flowSpeed(3)
+                .blastResistance(100f)
+        }
+        .fluidAttributes {
+            CreateAttributeHandler("block.fabricality.waste",
+                1500,
+                1400)
+        }
+        .onRegisterAfter(Registries.ITEM
+        ) { redstone: SimpleFlowableFluid.Flowing ->
+            val source = redstone.source
+            // transfer values
+            FluidStorage.combinedItemApiProvider(source.bucket).register(
+                CombinedItemApiProvider { context: ContainerItemContext? ->
+                    FullItemFluidStorage(context,
+                        { bucket: ItemVariant? ->
+                            ItemVariant.of(Items.BUCKET)
+                        },
+                        FluidVariant.of(source),
+                        FluidConstants.BUCKET)
+                })
+            FluidStorage.combinedItemApiProvider(Items.BUCKET)
+                .register(
+                    CombinedItemApiProvider { context: ContainerItemContext? ->
+                        EmptyItemFluidStorage(context,
+                            { bucket: ItemVariant? ->
+                                ItemVariant.of(source.bucket)
+                            },
+                            source,
+                            FluidConstants.BUCKET)
+                    })
+        }
+        .register()
+
+    val MOLTEN_ZINC: FluidEntry<SimpleFlowableFluid.Flowing> = Fabricality.REGISTRATE.standardFluid("molten_zinc")
+        .lang("Molten Zinc")
+        .tag(AllTags.forgeFluidTag("molten_zinc"), FluidTags.WATER) // fabric: water tag controls physics
+        .fluidProperties { p: SimpleFlowableFluid.Properties ->
+            p.levelDecreasePerBlock(2)
+                .tickRate(25)
+                .flowSpeed(3)
+                .blastResistance(100f)
+        }
+        .fluidAttributes {
+            CreateAttributeHandler("block.fabricality.molten_zinc",
+                1500,
+                1400)
+        }
+        .onRegisterAfter(Registries.ITEM
+        ) { redstone: SimpleFlowableFluid.Flowing ->
+            val source = redstone.source
+            // transfer values
+            FluidStorage.combinedItemApiProvider(source.bucket).register(
+                CombinedItemApiProvider { context: ContainerItemContext? ->
+                    FullItemFluidStorage(context,
+                        { bucket: ItemVariant? ->
+                            ItemVariant.of(Items.BUCKET)
+                        },
+                        FluidVariant.of(source),
+                        FluidConstants.BUCKET)
+                })
+            FluidStorage.combinedItemApiProvider(Items.BUCKET)
+                .register(
+                    CombinedItemApiProvider { context: ContainerItemContext? ->
+                        EmptyItemFluidStorage(context,
+                            { bucket: ItemVariant? ->
+                                ItemVariant.of(source.bucket)
+                            },
+                            source,
+                            FluidConstants.BUCKET)
+                    })
+        }
+        .register()
+
+    val MOLTEN_DESH: FluidEntry<SimpleFlowableFluid.Flowing> = Fabricality.REGISTRATE.standardFluid("molten_desh")
+        .lang("Molten Desh")
+        .tag(AllTags.forgeFluidTag("molten_desh"), FluidTags.WATER) // fabric: water tag controls physics
+        .fluidProperties { p: SimpleFlowableFluid.Properties ->
+            p.levelDecreasePerBlock(2)
+                .tickRate(25)
+                .flowSpeed(3)
+                .blastResistance(100f)
+        }
+        .fluidAttributes {
+            CreateAttributeHandler("block.fabricality.molten_desh",
+                1500,
+                1400)
+        }
+        .onRegisterAfter(Registries.ITEM
+        ) { redstone: SimpleFlowableFluid.Flowing ->
+            val source = redstone.source
+            // transfer values
+            FluidStorage.combinedItemApiProvider(source.bucket).register(
+                CombinedItemApiProvider { context: ContainerItemContext? ->
+                    FullItemFluidStorage(context,
+                        { bucket: ItemVariant? ->
+                            ItemVariant.of(Items.BUCKET)
+                        },
+                        FluidVariant.of(source),
+                        FluidConstants.BUCKET)
+                })
+            FluidStorage.combinedItemApiProvider(Items.BUCKET)
+                .register(
+                    CombinedItemApiProvider { context: ContainerItemContext? ->
+                        EmptyItemFluidStorage(context,
+                            { bucket: ItemVariant? ->
+                                ItemVariant.of(source.bucket)
+                            },
+                            source,
+                            FluidConstants.BUCKET)
+                    })
+        }
+        .register()
+
+    val MOLTEN_OSTRUM: FluidEntry<SimpleFlowableFluid.Flowing> = Fabricality.REGISTRATE.standardFluid("molten_ostrum")
+        .lang("Molten Ostrum")
+        .tag(AllTags.forgeFluidTag("molten_ostrum"), FluidTags.WATER) // fabric: water tag controls physics
+        .fluidProperties { p: SimpleFlowableFluid.Properties ->
+            p.levelDecreasePerBlock(2)
+                .tickRate(25)
+                .flowSpeed(3)
+                .blastResistance(100f)
+        }
+        .fluidAttributes {
+            CreateAttributeHandler("block.fabricality.molten_ostrum",
+                1500,
+                1400)
+        }
+        .onRegisterAfter(Registries.ITEM
+        ) { redstone: SimpleFlowableFluid.Flowing ->
+            val source = redstone.source
+            // transfer values
+            FluidStorage.combinedItemApiProvider(source.bucket).register(
+                CombinedItemApiProvider { context: ContainerItemContext? ->
+                    FullItemFluidStorage(context,
+                        { bucket: ItemVariant? ->
+                            ItemVariant.of(Items.BUCKET)
+                        },
+                        FluidVariant.of(source),
+                        FluidConstants.BUCKET)
+                })
+            FluidStorage.combinedItemApiProvider(Items.BUCKET)
+                .register(
+                    CombinedItemApiProvider { context: ContainerItemContext? ->
+                        EmptyItemFluidStorage(context,
+                            { bucket: ItemVariant? ->
+                                ItemVariant.of(source.bucket)
+                            },
+                            source,
+                            FluidConstants.BUCKET)
+                    })
+        }
+        .register()
+
+    val MOLTEN_CALORITE: FluidEntry<SimpleFlowableFluid.Flowing> = Fabricality.REGISTRATE.standardFluid("molten_calorite")
+        .lang("Molten Calorite")
+        .tag(AllTags.forgeFluidTag("molten_calorite"), FluidTags.WATER) // fabric: water tag controls physics
+        .fluidProperties { p: SimpleFlowableFluid.Properties ->
+            p.levelDecreasePerBlock(2)
+                .tickRate(25)
+                .flowSpeed(3)
+                .blastResistance(100f)
+        }
+        .fluidAttributes {
+            CreateAttributeHandler("block.fabricality.molten_calorite",
+                1500,
+                1400)
+        }
+        .onRegisterAfter(Registries.ITEM
+        ) { redstone: SimpleFlowableFluid.Flowing ->
+            val source = redstone.source
+            // transfer values
+            FluidStorage.combinedItemApiProvider(source.bucket).register(
+                CombinedItemApiProvider { context: ContainerItemContext? ->
+                    FullItemFluidStorage(context,
+                        { bucket: ItemVariant? ->
+                            ItemVariant.of(Items.BUCKET)
+                        },
+                        FluidVariant.of(source),
+                        FluidConstants.BUCKET)
+                })
+            FluidStorage.combinedItemApiProvider(Items.BUCKET)
+                .register(
+                    CombinedItemApiProvider { context: ContainerItemContext? ->
+                        EmptyItemFluidStorage(context,
+                            { bucket: ItemVariant? ->
+                                ItemVariant.of(source.bucket)
+                            },
+                            source,
+                            FluidConstants.BUCKET)
+                    })
+        }
+        .register()
+
+    fun register() {}
 }

@@ -3,7 +3,9 @@
   "package": "dev.sterner.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "BuiltInRegistryMixin",
     "MixinPrimaryLevelData",
+    "RegistryLoaderMixin",
     "mods.applied_energistics.MixinAppEngBase",
     "mods.industrial_revolution.MixinBaseFluid",
     "mods.valkyrien_skies.MixinValkyrienSkiesMod"

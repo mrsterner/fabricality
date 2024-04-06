@@ -23,9 +23,15 @@ object FabricalityItems {
 
     private val ITEM_GROUPING_MAP = mutableSetOf<Item>()
 
-    val ALGEA_BLEND: Item = registerItemModeled("algea_blend", Item(FabricItemSettings()), ItemModelGenerator.generated("item", "algea_blend"))
+    val ALGAL_BLEND: Item = registerItemModeled("algal_blend", Item(FabricItemSettings()), ItemModelGenerator.generated("item", "algal_blend"))
 
-    val ALGEA_BRICK: Item = registerItemModeled("algal_brick", Item(FabricItemSettings()), ItemModelGenerator.generated("item", "algal_brick"))
+    val ALGAL_BRICK: Item = registerItemModeled("algal_brick", Item(FabricItemSettings()), ItemModelGenerator.generated("item", "algal_brick"))
+
+    val MATTER_PLASTICS: Item = registerItemModeled("matter_plastics", Item(FabricItemSettings()), ItemModelGenerator.generated("item", "matter_plastics"))
+
+    val STONE_ROD: Item = registerItemModeled("stone_rod", Item(FabricItemSettings()), ItemModelGenerator.generated("item", "stone_rod"))
+
+
 
     val SAW_BLADE: Item = registerItemModeled("saw_blade",
         Item(FabricItemSettings()),

@@ -4,7 +4,6 @@ import com.simibubi.create.content.kinetics.saw.CuttingRecipe
 import com.simibubi.create.content.processing.recipe.ProcessingOutput
 import dev.sterner.Fabricality
 import dev.sterner.data.FreePRP
-import dev.sterner.util.ModCompat
 import ho.artisan.lib.recipe.api.RecipeLoadingEvents.AddRecipesCallback
 import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.core.registries.Registries

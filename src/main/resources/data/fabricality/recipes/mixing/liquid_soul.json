@@ -1,0 +1,18 @@
+{
+  "type": "create:mixing",
+  "heatRequirement": "heated",
+  "ingredients": [
+    {
+      "item": "weeping_vines"
+    },
+    {
+      "item": "twisting_vines"
+    }
+  ],
+  "results": [
+    {
+      "amount": 27000,
+      "fluid": "fabricality:soul"
+    }
+  ]
+}

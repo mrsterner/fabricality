@@ -1,0 +1,23 @@
+{
+  "type": "create:mechanical_crafting",
+  "pattern": ["AAAAA", "ASSSA", "GS SG", "ASSSA", "AAMAA"],
+  "key": {
+    "A": {
+      "item": "fabricality:matter_plastics"
+    },
+    "M": {
+      "item": "ae2:controller"
+    },
+    "G": {
+      "item": "fabricality:sturdy_mechanism"
+    },
+    "S": {
+      "item": "fabricality:computation_matrix"
+    }
+  },
+  "result": {
+    "item": "indrev:controller",
+    "count": 1
+  },
+  "acceptMirrored": true
+}

@@ -14,8 +14,7 @@ import dev.sterner.item.FabItemTags
 import dev.sterner.registry.FabricalityItems
 import dev.sterner.util.MechAndSmithCraft
 import dev.sterner.util.MechAndSmithCraft.entry
-import dev.sterner.util.ModCompat
-import dev.sterner.util.ModCompat.Entry.*
+import dev.sterner.ModCompatHelper.Entry.*
 import dev.sterner.util.RecipeUtil
 import ho.artisan.lib.recipe.api.RecipeLoadingEvents.AddRecipesCallback
 import ho.artisan.lib.recipe.api.RecipeLoadingEvents.RemoveRecipesCallback
@@ -49,9 +48,9 @@ object AndesiteThread : TechThread {
         ) { id: ResourceLocation? ->
             VanillaRecipeBuilders.smeltingRecipe(
                 id, "",
-                Ingredient.of(FabricalityItems.ALGEA_BLEND),
+                Ingredient.of(FabricalityItems.ALGAL_BLEND),
                 CookingBookCategory.MISC,
-                FabricalityItems.ALGEA_BRICK.defaultInstance,
+                FabricalityItems.ALGAL_BRICK.defaultInstance,
                 0f, 120)
         }
 
@@ -62,7 +61,7 @@ object AndesiteThread : TechThread {
                 .shapedRecipe("SS", "AA")
                 .ingredient('A', Items.CLAY_BALL)
                 .ingredient('S', Items.KELP, Items.SEAGRASS)
-                .output(ModCompat.Entry.FAB.asStack(2, "algal_blend"))
+                .output(FAB.asStack(2, "algal_blend"))
                 .build(id, "")
         }
 
@@ -73,7 +72,7 @@ object AndesiteThread : TechThread {
                 .shapedRecipe("AA", "SS")
                 .ingredient('A', Items.CLAY_BALL)
                 .ingredient('S', Items.KELP, Items.SEAGRASS)
-                .output(ModCompat.Entry.FAB.asStack(2, "algal_blend"))
+                .output(FAB.asStack(2, "algal_blend"))
                 .build(id, "")
         }
 
@@ -83,8 +82,8 @@ object AndesiteThread : TechThread {
             VanillaRecipeBuilders
                 .shapedRecipe("SS", "AA")
                 .ingredient('A', Items.ANDESITE)
-                .ingredient('S', FabricalityItems.ALGEA_BLEND)
-                .output(ModCompat.Entry.CREATE.asStack(2, "andesite_alloy"))
+                .ingredient('S', FabricalityItems.ALGAL_BLEND)
+                .output(CREATE.asStack(2, "andesite_alloy"))
                 .build(id, "")
         }
 
@@ -94,7 +93,7 @@ object AndesiteThread : TechThread {
             VanillaRecipeBuilders
                 .shapedRecipe("AA", "SS")
                 .ingredient('A', Items.ANDESITE)
-                .ingredient('S', ModCompat.Entry.FAB.asItem("algal_brick"))
+                .ingredient('S', FAB.asItem("algal_brick"))
                 .output(CREATE.asStack(2, "andesite_alloy"))
                 .build(id, "")
         }
@@ -105,7 +104,7 @@ object AndesiteThread : TechThread {
             MixingRecipe(FreePRP(id)
                 .setIngredient(Ingredient.of(Items.CLAY_BALL),
                     Ingredient.of(Items.KELP, Items.SEAGRASS))
-                .setResult(ProcessingOutput(ItemStack(ModCompat.Entry.FAB.asItem("algal_blend")), 2f))
+                .setResult(ProcessingOutput(ItemStack(FAB.asItem("algal_blend")), 2f))
             )
         }
 
@@ -113,9 +112,9 @@ object AndesiteThread : TechThread {
             recipeId("mixing", "andesite_alloy")
         ) { id: ResourceLocation? ->
             MixingRecipe(FreePRP(id)
-                .setIngredient(Ingredient.of(ModCompat.Entry.FAB.asItem("algal_brick")),
+                .setIngredient(Ingredient.of(FAB.asItem("algal_brick")),
                     Ingredient.of(Items.ANDESITE))
-                .setResult(ProcessingOutput(ItemStack(ModCompat.Entry.CREATE.asItem("andesite_alloy")), 2f))
+                .setResult(ProcessingOutput(ItemStack(CREATE.asItem("andesite_alloy")), 2f))
             )
         }
 
@@ -124,7 +123,7 @@ object AndesiteThread : TechThread {
         ) { id: ResourceLocation? ->
             VanillaRecipeBuilders
                 .shapelessRecipe(FAB.asItem("kinetic_mechanism").defaultInstance)
-                .ingredient(ModCompat.Entry.CREATE.asItem("cogwheel"))
+                .ingredient(CREATE.asItem("cogwheel"))
                 .ingredient(CREATE.asItem("andesite_alloy"))
                 .ingredient(ItemTags.LOGS).ingredient(FabItemTags.SAWS)
                 .build(id, "")

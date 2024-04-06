@@ -2,26 +2,23 @@ package dev.sterner.tweak
 
 import com.google.common.collect.ImmutableList
 import com.simibubi.create.AllRecipeTypes
-import com.simibubi.create.content.equipment.sandPaper.SandPaperPolishingRecipe
 import com.simibubi.create.content.fluids.pipes.FluidPipeBlock
 import com.simibubi.create.content.fluids.transfer.FillingRecipe
 import com.simibubi.create.content.kinetics.crusher.CrushingRecipe
 import com.simibubi.create.content.kinetics.millstone.MillingRecipe
-import com.simibubi.create.content.kinetics.mixer.CompactingRecipe
 import com.simibubi.create.content.kinetics.press.PressingRecipe
-import com.simibubi.create.content.processing.recipe.HeatCondition
 import com.simibubi.create.foundation.fluid.FluidIngredient
 import dev.sterner.Fabricality
+import dev.sterner.ModCompatHelper.Entry.*
 import dev.sterner.data.FreePRP
-import dev.sterner.registry.FabricalityFluids
 import dev.sterner.tweak.thread.TechThread
 import dev.sterner.util.MechAndSmithCraft
-import dev.sterner.util.ModCompat.Entry.*
 import dev.sterner.util.RecipeUtil
 import ho.artisan.lib.recipe.api.RecipeLoadingEvents
 import ho.artisan.lib.recipe.api.builder.VanillaRecipeBuilders
 import io.github.fabricators_of_create.porting_lib.tags.Tags
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants
+import net.minecraft.core.RegistryAccess
 import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.core.registries.Registries
 import net.minecraft.resources.ResourceLocation
@@ -35,6 +32,9 @@ import java.util.*
 
 class RecipeTweaks : RecipeLoadingEvents.AddRecipesCallback, RecipeLoadingEvents.ModifyRecipesCallback, RecipeLoadingEvents.RemoveRecipesCallback {
     companion object {
+
+        lateinit var registryAccess: RegistryAccess
+
         val DEPRECATED_ITEMS: Collection<ItemLike> = ImmutableList.of( // Wrenches
             AD_ASTRA.asItem("wrench"),
             INDREV.asItem("wrench"),
@@ -51,14 +51,13 @@ class RecipeTweaks : RecipeLoadingEvents.AddRecipesCallback, RecipeLoadingEvents
     private val AD_ASTRA_MATERIALS = arrayOf("steel", "desh", "ostrum", "calorite", "iron")
     private val AD_ASTRA_DECOR_TYPES = arrayOf("pillar", "plating")
 
-    override fun addRecipes(handler: RecipeLoadingEvents.AddRecipesCallback.RecipeHandler?) {
+    override fun addRecipes(handler: RecipeLoadingEvents.AddRecipesCallback.RecipeHandler) {
 
-        TechThread.THREADS.forEach { thread -> thread.addRecipes(handler!!) }
+        TechThread.THREADS.forEach { thread -> thread.addRecipes(handler) }
 
-        CuttingRecipeTweaks.register(handler!!)
+        CuttingRecipeTweaks.register(handler)
         OreProcessingTweaks.register(handler)
         MechAndSmithCraft.register(handler)
-
 
 
         // Ad Astra
@@ -108,7 +107,7 @@ class RecipeTweaks : RecipeLoadingEvents.AddRecipesCallback, RecipeLoadingEvents
                     )
                 }
             }
-
+/*
             handler.register(
                 recipeId("compacting", "aquamarine_quartz")
             ) { id ->
@@ -130,7 +129,11 @@ class RecipeTweaks : RecipeLoadingEvents.AddRecipesCallback, RecipeLoadingEvents
                         .setResult(INDREV.asProcessingOutput("nikolite_ingot"))
                 )
             }
+
+ */
         }
+
+
 
 // Dusts
         handler.register(
@@ -162,7 +165,7 @@ class RecipeTweaks : RecipeLoadingEvents.AddRecipesCallback, RecipeLoadingEvents
             FillingRecipe(
                 FreePRP(id)
                     .setIngredient(FAB.asIngredient("nickel_ingot"))
-                    .setFluidIngredient(FluidIngredient.fromFluid(FAB.asFluid("molten_iron"), FluidConstants.NUGGET * 6))
+                    .setFluidIngredient(FluidIngredient.fromFluid(INDREV.asFluid("molten_iron_still"), FluidConstants.NUGGET * 6))
                     .setResult(FAB.asProcessingOutput("nickel_compound"))
             )
         }
@@ -177,9 +180,51 @@ class RecipeTweaks : RecipeLoadingEvents.AddRecipesCallback, RecipeLoadingEvents
                 .build(id, "")
         }
 
-// Repeat the same pattern for other saw recipes...
+        handler.register(recipeId("crafting", "stone_saw")
+        ) { id ->
+            VanillaRecipeBuilders.shapedRecipe("SRR", "SMR")
+                .ingredient('S', MC.asIngredient("stick"))
+                .ingredient('R', FAB.asIngredient("stone_rod"))
+                .ingredient('M', MC.asIngredient("flint"))
+                .output(FAB.asStack("stone_saw"))
+                .build(id, "")
+        }
+
+        handler.register(recipeId("crafting", "iron_saw")
+        ) { id ->
+            VanillaRecipeBuilders.shapedRecipe("SRR", "SMR")
+                .ingredient('S', MC.asIngredient("stick"))
+                .ingredient('R', FAB.asIngredient("stone_rod"))
+                .ingredient('M', TagKey.create(Registries.ITEM, C.id("iron_ingots")))
+                .output(FAB.asStack("iron_saw")).build(id, "")
+        }
+
+        handler.register(recipeId("crafting", "diamond_saw")
+        ) { id ->
+            VanillaRecipeBuilders.shapedRecipe("SRR", "SMR")
+                .ingredient('S', MC.asIngredient("stick"))
+                .ingredient('R', FAB.asIngredient("stone_rod"))
+                .ingredient('M', MC.asIngredient("diamond"))
+                .output(FAB.asStack("diamond_saw")).build(id, "")
+        }
+/*
+        handler.register(recipeId("smithing", "netherite_saw")
+        ) { id ->
+            SmithingRecipe(id, FAB.asIngredient("diamond_saw"),
+                MC.asIngredient("netherite_ingot"), FAB.asStack("netherite_saw"))
+        }
+
+ */
+
+        handler.register(recipeId("pressing", "zinc_sheet")
+        ) { id ->
+            PressingRecipe(
+                FreePRP(id).setIngredient(CREATE.asIngredient("zinc_ingot"))
+                    .setResult(FAB.asProcessingOutput("zinc_sheet")))
+        }
 
 // Redstone
+
         handler.register(
             recipeId("melting", "redstone")
         ) { id ->
@@ -187,28 +232,34 @@ class RecipeTweaks : RecipeLoadingEvents.AddRecipesCallback, RecipeLoadingEvents
                 MC.id("redstone"),
                 FAB.id("redstone"),
                 FluidConstants.INGOT,
-                null, 0, 250, 15
+                true
             ))
         }
 
-//TODO add the rest of the commented recipes chatgpt removed
+        handler.register(recipeId("melting", "redstone_block")
+        ) { id ->
+            RecipeManager.fromJson(id,
+                RecipeUtil.generateMelting(MC.id("redstone_block"),
+                    FAB.id("redstone"), FluidConstants.BLOCK, true))
+        }
+
     }
 
-    override fun modifyRecipes(handler: RecipeLoadingEvents.ModifyRecipesCallback.RecipeHandler?) {
-        TechThread.THREADS.forEach { thread -> thread.modifyRecipes(handler!!) }
+    override fun modifyRecipes(handler: RecipeLoadingEvents.ModifyRecipesCallback.RecipeHandler) {
+        TechThread.THREADS.forEach { thread -> thread.modifyRecipes(handler) }
     }
 
-    override fun removeRecipes(handler: RecipeLoadingEvents.RemoveRecipesCallback.RecipeHandler?) {
-        TechThread.THREADS.forEach { thread -> thread.removeRecipes(handler!!) }
+    override fun removeRecipes(handler: RecipeLoadingEvents.RemoveRecipesCallback.RecipeHandler) {
+        TechThread.THREADS.forEach { thread -> thread.removeRecipes(handler) }
 
-        OreProcessingTweaks.register(handler!!)
+        OreProcessingTweaks.register(handler)
         MechAndSmithCraft.register(handler)
 
 
         // Remove wrenches except Create's and AE2's
         handler.removeIf { recipe ->
             (!CREATE.checkContains(handler, recipe) && !AE2.checkContains(handler, recipe)
-                    && BuiltInRegistries.ITEM.getKey(recipe.getResultItem(handler.registryManager).item).path.contains("wrench"))
+                    && BuiltInRegistries.ITEM.getKey(recipe.getResultItem(registryAccess).item).path.contains("wrench"))
         }
         handler.removeIf(INDREV.predicateOutput(handler, "controller"))
 
@@ -231,12 +282,12 @@ class RecipeTweaks : RecipeLoadingEvents.AddRecipesCallback, RecipeLoadingEvents
         // Indrev
         handler.removeIf { recipe ->
             (INDREV.checkContains(handler, recipe)
-                    && BuiltInRegistries.ITEM.getKey(recipe.getResultItem(handler.registryManager).item).path
+                    && BuiltInRegistries.ITEM.getKey(recipe.getResultItem(registryAccess).item).path
                 .matches(Regex(".*_(pickaxe|axe|shovel|hoe|sword)$")))
         }
         handler.removeIf(INDREV.predicateIngredient(handler, "fan"))
         handler.removeIf { recipe ->
-            val resultItem = recipe.getResultItem(handler.registryManager).item
+            val resultItem = recipe.getResultItem(registryAccess).item
             resultItem is BlockItem && resultItem.block is FluidPipeBlock
         }
         handler.remove(INDREV.id("shaped/coal_generator_mk1"))

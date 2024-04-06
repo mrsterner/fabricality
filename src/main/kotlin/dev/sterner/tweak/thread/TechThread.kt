@@ -9,17 +9,16 @@ interface TechThread{
 
     companion object {
         val THREADS: List<TechThread> = listOf(
-            AndesiteThread
-            /*,
+            AndesiteThread,
             BrassThread,
             CopperThread,
             ZincThread,
             ObsidianThread,
+            FluixThread
+            /*
             InvarThread,
             EnderiumThread,
-            FluixThread,
             MathThread
-
              */
         )
     }

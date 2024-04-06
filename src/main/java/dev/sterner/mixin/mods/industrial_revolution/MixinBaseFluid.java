@@ -23,6 +23,6 @@ public class MixinBaseFluid {
      */
     @Inject(method = "<init>", at = @At("TAIL"))
     private void fabricality$invertColor(ResourceLocation identifier, Function0 block, Function0 bucketItem, int color, CallbackInfo ci){
-        this.color = ColorHelper.toVanillaColor(color);
+        //this.color = ColorHelper.toVanillaColor(color);
     }
 }

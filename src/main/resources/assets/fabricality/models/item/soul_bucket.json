@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "fabricality:item/bucket/soul_bucket"
+  }
+}

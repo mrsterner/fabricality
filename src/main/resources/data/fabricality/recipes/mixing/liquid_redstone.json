@@ -1,0 +1,21 @@
+{
+  "type": "create:mixing",
+  "ingredients": [
+    {
+      "item": "ae2:charged_certus_quartz_crystal"
+    },
+    {
+      "amount": 18000,
+      "fluid": "fabricality:sky_stone"
+    }
+  ],
+  "results": [
+    {
+      "item": "ae2:certus_quartz_crystal"
+    },
+    {
+      "amount": 18000,
+      "fluid": "fabricality:redstone"
+    }
+  ]
+}

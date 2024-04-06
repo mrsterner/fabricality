@@ -4,7 +4,7 @@ import dev.emi.emi.api.EmiPlugin
 import dev.emi.emi.api.EmiRegistry
 import dev.emi.emi.api.stack.EmiStack
 import dev.sterner.tweak.RecipeTweaks
-import dev.sterner.util.ModCompat
+import dev.sterner.ModCompatHelper
 import java.util.*
 
 class FabEMIClientPlugin : EmiPlugin {
@@ -25,7 +25,7 @@ class FabEMIClientPlugin : EmiPlugin {
         )).forEach { prefix ->
             Arrays.stream(postfix)
                 .forEach {
-                    registry!!.removeEmiStacks(EmiStack.of(ModCompat.Entry.INDREV.asItem(joinAll(prefix, it))))
+                    registry!!.removeEmiStacks(EmiStack.of(ModCompatHelper.Entry.INDREV.asItem(joinAll(prefix, it))))
                 }
         }
     }

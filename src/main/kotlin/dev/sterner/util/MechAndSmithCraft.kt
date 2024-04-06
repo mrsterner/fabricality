@@ -1,10 +1,12 @@
 package dev.sterner.util
 
 import dev.sterner.Fabricality
+import dev.sterner.ModCompatHelper
 import ho.artisan.lib.recipe.api.RecipeLoadingEvents.AddRecipesCallback
 import ho.artisan.lib.recipe.api.RecipeLoadingEvents.RemoveRecipesCallback
 import ho.artisan.lib.recipe.api.builder.VanillaRecipeBuilders
 import ho.artisan.lib.recipe.mixin.TransformSmithingRecipeAccessor
+import net.minecraft.core.RegistryAccess
 import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.core.registries.Registries
 import net.minecraft.resources.ResourceLocation
@@ -19,6 +21,8 @@ import javax.annotation.Nullable
 
 
 object MechAndSmithCraft {
+    lateinit var registryAccess: RegistryAccess
+
     private val entries = ArrayList<Entry>()
 
     /**
@@ -77,8 +81,8 @@ object MechAndSmithCraft {
     fun register(handler: RemoveRecipesCallback.RecipeHandler) {
         entries.forEach(Consumer<Entry> { entry: Entry ->
             handler.removeIf { p: Recipe<*> ->
-                (!ModCompat.Entry.FAB.checkContains(handler, p)
-                        && p.getResultItem(handler.registryManager).`is`(entry.getOutputItem()))
+                (!ModCompatHelper.Entry.FAB.checkContains(handler, p)
+                        && p.getResultItem(registryAccess).`is`(entry.getOutputItem()!!))
             }
         })
     }
