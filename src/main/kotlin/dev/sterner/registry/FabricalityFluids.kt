@@ -29,7 +29,7 @@ object FabricalityFluids {
         .tag(AllTags.forgeFluidTag("soul"), FluidTags.WATER) // fabric: water tag controls physics
         .fluidProperties { p: SimpleFlowableFluid.Properties ->
             p.levelDecreasePerBlock(1)
-                .tickRate(50)
+                .tickRate(10)
                 .flowSpeed(6)
                 .blastResistance(100f)
         }
@@ -69,7 +69,7 @@ object FabricalityFluids {
         .tag(AllTags.forgeFluidTag("raw_logic"), FluidTags.WATER) // fabric: water tag controls physics
         .fluidProperties { p: SimpleFlowableFluid.Properties ->
             p.levelDecreasePerBlock(1)
-                .tickRate(25)
+                .tickRate(10)
                 .flowSpeed(4)
                 .blastResistance(100f)
         }

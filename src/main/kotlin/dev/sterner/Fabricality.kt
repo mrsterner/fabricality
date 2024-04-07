@@ -1,6 +1,7 @@
 package dev.sterner
 
 import com.simibubi.create.foundation.data.CreateRegistrate
+import dev.sterner.registry.FabricalityBlockEntityTypes
 import dev.sterner.registry.FabricalityBlocks
 import dev.sterner.registry.FabricalityFluids
 import dev.sterner.registry.FabricalityItems
@@ -34,8 +35,6 @@ object Fabricality : ModInitializer {
     //TODO Remove AE2 recipes, they seem to not be removed by RecipeInCode
     //TODO Intergrate diesel gen to make Matter Platics
     //TODO Whole quest tree, use the Heracles converter
-    //TODO make soul fluid used by the infernal mechanism, like above and beyond
-    //TODO inscriber recipe reword using sequenced assembly?
     //TODO make saw cut wood
     /*
     { TODO replace this with something else, for each processor
@@ -70,6 +69,7 @@ object Fabricality : ModInitializer {
         FabricalityItems.register()
         FabricalityBlocks.register()
         FabricalityFluids.register()
+        FabricalityBlockEntityTypes.register()
 
         REGISTRATE.register()
 

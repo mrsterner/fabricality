@@ -4,6 +4,7 @@ import dev.sterner.Fabricality
 import dev.sterner.blocks.CasingBlockEntry
 import dev.sterner.blocks.ExtractorMachineBlock
 import dev.sterner.blocks.MachineBlockEntry
+import dev.sterner.blocks.PressBlock
 import dev.sterner.interfaces.BlockItemSettable
 import dev.sterner.interfaces.ResourcedBlock
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings
@@ -27,6 +28,10 @@ object FabricalityBlocks {
 
     var EXTRACTOR: Block =
         registerBlock("extractor_machine", ExtractorMachineBlock(FabricBlockSettings.of().strength(1.5f, 6.0f)))
+
+    var PRESS: Block =
+        registerBlock("press", PressBlock(FabricBlockSettings.of().nonOpaque().strength(1.5f, 6.0f)))
+
 
     fun register() {
 
