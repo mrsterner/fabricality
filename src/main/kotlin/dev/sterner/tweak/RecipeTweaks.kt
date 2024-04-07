@@ -7,6 +7,7 @@ import com.simibubi.create.content.fluids.transfer.FillingRecipe
 import com.simibubi.create.content.kinetics.crusher.CrushingRecipe
 import com.simibubi.create.content.kinetics.millstone.MillingRecipe
 import com.simibubi.create.content.kinetics.press.PressingRecipe
+import com.simibubi.create.content.processing.recipe.HeatCondition
 import com.simibubi.create.foundation.fluid.FluidIngredient
 import dev.sterner.Fabricality
 import dev.sterner.ModCompatHelper.Entry.*
@@ -233,7 +234,7 @@ class RecipeTweaks : RecipeLoadingEvents.AddRecipesCallback, RecipeLoadingEvents
                 MC.id("redstone"),
                 FAB.id("redstone"),
                 FluidConstants.INGOT,
-                true
+                HeatCondition.HEATED.serialize()
             ))
         }
 
@@ -241,7 +242,7 @@ class RecipeTweaks : RecipeLoadingEvents.AddRecipesCallback, RecipeLoadingEvents
         ) { id ->
             RecipeManager.fromJson(id,
                 RecipeUtil.generateMelting(MC.id("redstone_block"),
-                    FAB.id("redstone"), FluidConstants.BLOCK, true))
+                    FAB.id("redstone"), FluidConstants.BLOCK, HeatCondition.HEATED.serialize()))
         }
 
     }

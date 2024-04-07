@@ -32,10 +32,27 @@ object Fabricality : ModInitializer {
 
     //TODO Fluix crystal recipe, since seeds no longer exists
     //TODO Remove AE2 recipes, they seem to not be removed by RecipeInCode
-    //TODO Intergrate diesel gen
+    //TODO Intergrate diesel gen to make Matter Platics
     //TODO Whole quest tree, use the Heracles converter
     //TODO make soul fluid used by the infernal mechanism, like above and beyond
     //TODO inscriber recipe reword using sequenced assembly?
+    //TODO make saw cut wood
+    /*
+    { TODO replace this with something else, for each processor
+  "type": "tconstruct:casting_table",
+  "cast": {
+    "item": "ae2:calculation_processor_press"
+  },
+  "cast_consumed": false,
+  "fluid": {
+    "tag": "tconstruct:molten_copper",
+    "amount": 18000
+  },
+  "result": "ae2:printed_calculation_processor",
+  "cooling_time": 50
+}
+
+     */
 
     val debug = true
     val MODID = "fabricality"

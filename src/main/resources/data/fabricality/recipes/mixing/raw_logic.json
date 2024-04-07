@@ -1,0 +1,15 @@
+{
+  "type": "create:mixing",
+  "heatRequirement": "heated",
+  "ingredients": [
+    {
+      "item": "fabricality:calculation_mechanism"
+    }
+  ],
+  "results": [
+    {
+      "amount": 3000,
+      "fluid": "fabricality:raw_logic"
+    }
+  ]
+}

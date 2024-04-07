@@ -1,5 +1,6 @@
 package dev.sterner.tweak.thread
 
+import com.simibubi.create.content.fluids.transfer.EmptyingRecipe
 import com.simibubi.create.content.fluids.transfer.FillingRecipe
 import com.simibubi.create.content.kinetics.crusher.CrushingRecipe
 import com.simibubi.create.content.kinetics.deployer.DeployerApplicationRecipe
@@ -134,32 +135,6 @@ object FluixThread : TechThread {
             )
         }
 
-        handler.register(
-            recipeId("crushing", "blizz_cube")
-        ) { id: ResourceLocation? ->
-            CrushingRecipe(FreePRP(id)
-                .setIngredient(FAB.asIngredient("blizz_cube"))
-                .setResult(
-                    FAB.asProcessingOutput(1f, 2, "blizz_powder"),
-                    FAB.asProcessingOutput(0.5f, 1, "blizz_powder")
-                )
-                .setProcessingTime(350))
-        }
-
-        handler.register(
-            recipeId("crushing", "basalz_shard")
-        ) { id: ResourceLocation? ->
-            CrushingRecipe(FreePRP(id)
-                .setIngredient(FAB.asIngredient("basalz_shard"))
-                .setResult(
-                    FAB.asProcessingOutput(1f, 2, "basalz_powder"),
-                    FAB.asProcessingOutput(0.5f, 1, "basalz_powder")
-                )
-                .setProcessingTime(350))
-        }
-
-        val blizz: Ingredient = FAB.asIngredient("blizz_powder")
-        val basalz: Ingredient = FAB.asIngredient("basalz_powder")
 
         handler.register(
             recipeId("splashing", "sandstone")
@@ -169,24 +144,9 @@ object FluixThread : TechThread {
                 .setResult(FAB.asProcessingOutput(0.65f, "sand_ball")))
         }
 
-        handler.register(
-            recipeId("compacting", "ice_charge")
-        ) { id: ResourceLocation? ->
-            CompactingRecipe(FreePRP(id)
-                .setIngredient(blizz, blizz, blizz, blizz, blizz, blizz, blizz, blizz)
-                .setResult(FAB.asProcessingOutput("ice_charge")))
-        }
-
-        handler.register(
-            recipeId("compacting", "earth_charge")
-        ) { id: ResourceLocation? ->
-            CompactingRecipe(FreePRP(id)
-                .setIngredient(basalz, basalz, basalz, basalz, basalz, basalz, basalz, basalz)
-                .setResult(FAB.asProcessingOutput("earth_charge")))
-        }
 
         // Coke Processing
-        /*
+        /* convrted to json
 		handler.register(
 				recipeId("compacting", "coal"),
 				id -> new CompactingRecipe(new FreePRP(id)
@@ -214,16 +174,18 @@ object FluixThread : TechThread {
                 .setResult(MC.asProcessingOutput("coal")))
         }
 
-        /*
-     handler.register(
-             recipeId("emptying", "sand_ball"),
-             id -> new EmptyingRecipe(new FreePRP(id)
-                     .setIngredient(CABF.asIngredient("sand_ball"))
-                     .setResult(CABF.asProcessingOutput("rough_sand"))
-                     .setFluidResult(new FluidStack(CabfFluids.FINE_SAND, FluidConstants.BUCKET / 2)))
-     );
+        /* converted to json
+         handler.register(
+                 recipeId("emptying", "sand_ball")
+         ) { id: ResourceLocation? ->
+             EmptyingRecipe(FreePRP(id)
+                 .setIngredient(FAB.asIngredient("sand_ball"))
+                 .setResult(FAB.asProcessingOutput("rough_sand"))
+                 .setFluidResult(new FluidStack(CabfFluids.FINE_SAND, FluidConstants.BUCKET / 2)))
+         }
 
-      */
+         */
+
         handler.register(
             recipeId("compacting", "silicon_compound")
         ) { id: ResourceLocation? ->

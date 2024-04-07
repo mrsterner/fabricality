@@ -14,7 +14,7 @@
           "item": "fabricality:incomplete_infernal_mechanism"
         },
         {
-          "fluid": "tconstruct:liquid_soul",
+          "fluid": "fabricality:soul",
           "amount": 27000
         }
       ],

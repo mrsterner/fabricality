@@ -3,6 +3,7 @@ package dev.sterner.registry
 import com.simibubi.create.content.processing.sequenced.SequencedAssemblyItem
 import dev.sterner.Fabricality
 import dev.sterner.data.ItemModelGenerator
+import dev.sterner.item.GlintedItem
 import dev.sterner.item.MechanismItem
 import dev.sterner.item.SawItem
 import dev.sterner.item.ToolMaterialIndex
@@ -64,6 +65,27 @@ object FabricalityItems {
     val INCOMPLETE_COKE_CHUNK: Item = registerItemModeled("incomplete_coke_chunk",
         SequencedAssemblyItem(FabricItemSettings()),
         ItemModelGenerator.generated("item", "incomplete_coke_chunk"))
+
+    val ZINC_SHEET: Item = registerItemModeled("zinc_sheet",
+        Item(FabricItemSettings()), ItemModelGenerator.generated("item", "zinc_sheet"))
+
+    val SILICON_COMPOUND: Item = registerItemModeled("silicon_compound",
+        Item(FabricItemSettings()),
+        ItemModelGenerator.generated("item", "silicon_compound"))
+
+    val SAND_BALL: Item = registerItemModeled("sand_ball",
+        Item(FabricItemSettings()),
+        ItemModelGenerator.generated("item", "sand_ball"))
+
+    val ROUGH_SAND: Item = registerItemModeled("rough_sand",
+        Item(FabricItemSettings()), ItemModelGenerator.generated("item", "rough_sand"))
+
+    val PURIFIED_SAND: Item = registerItemModeled("purified_sand",
+        Item(FabricItemSettings()),
+        ItemModelGenerator.generated("item", "purified_sand"))
+
+    val COMPUTATION_MATRIX: Item = registerItem("computation_matrix",
+        GlintedItem(FabricItemSettings()))
 
     val CRUSHED_RAW_MATERIALS: List<String> = listOf("desh", "ostrum", "calorite", "cobalt")
     val DUSTS: List<String> = listOf("zinc", "desh", "ostrum", "calorite", "cobalt", "diamond", "emerald", "nickel")

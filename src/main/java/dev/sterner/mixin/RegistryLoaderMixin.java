@@ -2,6 +2,7 @@ package dev.sterner.mixin;
 
 import dev.sterner.ModCompatHelper;
 import dev.sterner.tweak.RecipeTweaks;
+import dev.sterner.tweak.thread.UncategorizedThread;
 import dev.sterner.util.MechAndSmithCraft;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.RegistryDataLoader;
@@ -25,6 +26,7 @@ public class RegistryLoaderMixin {
     )
     private static void beforeLoad(ResourceManager resourceManager, RegistryAccess registryAccess, List<RegistryDataLoader.RegistryData<?>> registryData, CallbackInfoReturnable<RegistryAccess.Frozen> cir) {
 
+        UncategorizedThread.registryAccess = registryAccess;
         MechAndSmithCraft.registryAccess = registryAccess;
         RecipeTweaks.registryAccess = registryAccess;
         ModCompatHelper.registryAccess = registryAccess;

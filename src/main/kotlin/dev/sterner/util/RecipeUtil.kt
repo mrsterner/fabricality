@@ -32,7 +32,7 @@ object RecipeUtil {
             input: ResourceLocation,
             fluid: ResourceLocation,
             amount: Long,
-            heatRequirement: Boolean
+            heatRequirement: String?
     ): JsonObject {
         val json = JsonObject()
 

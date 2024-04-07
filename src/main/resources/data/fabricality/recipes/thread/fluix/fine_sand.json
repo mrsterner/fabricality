@@ -1,0 +1,17 @@
+{
+  "type": "create:emptying",
+  "ingredients": [
+    {
+      "item": "fabricality:sand_ball"
+    }
+  ],
+  "results": [
+    {
+      "item": "fabricality:rough_sand"
+    },
+    {
+      "amount": 40500,
+      "fluid": "fabricality:fine_sand"
+    }
+  ]
+}

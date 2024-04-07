@@ -21,7 +21,7 @@ object ZincThread : TechThread {
     }
 
     override fun addRecipes(handler: AddRecipesCallback.RecipeHandler) {
-        /*
+        /* converted to json
 		handler.register(
 				recipeId("mixing", "liquid_soul"),
 				id -> new MixingRecipe(new FreePRP(id)

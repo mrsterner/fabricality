@@ -14,7 +14,8 @@ interface TechThread {
             CopperThread,
             ZincThread,
             ObsidianThread,
-            FluixThread
+            FluixThread,
+            UncategorizedThread
             /*
             InvarThread,
             EnderiumThread,

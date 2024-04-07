@@ -3,6 +3,7 @@ package dev.sterner.tweak
 import com.simibubi.create.content.kinetics.crusher.CrushingRecipe
 import com.simibubi.create.content.kinetics.fan.processing.SplashingRecipe
 import com.simibubi.create.content.kinetics.millstone.MillingRecipe
+import com.simibubi.create.content.processing.recipe.HeatCondition
 import com.simibubi.create.content.processing.recipe.ProcessingOutput
 import dev.sterner.Fabricality
 import dev.sterner.data.FreePRP
@@ -128,7 +129,7 @@ object OreProcessingTweaks {
                 RecipeManager.fromJson(id, RecipeUtil.generateMelting(entry.getDust(),
                     entry.getMoltenMetal(),
                     FluidConstants.NUGGET / 4,
-                    true))
+                    HeatCondition.HEATED.serialize()))
             }
 
             // Ingot -> Dust
